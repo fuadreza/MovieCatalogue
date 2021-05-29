@@ -17,6 +17,9 @@ android {
         versionName "1.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+
+        buildConfigField("String", "API_BASE_URL", '"https://api.themoviedb.org/3/"')
+        buildConfigField("String", "API_KEY", '"ef2b66099a63d242660e26a77cd29a6b"')
     }
 
     buildTypes {
@@ -51,7 +54,6 @@ dependencies {
     implementation "com.squareup.okhttp3:okhttp:$okHttp3Version"
     implementation "com.squareup.okhttp3:okhttp-urlconnection:$okHttp3Version"
     implementation "com.squareup.okhttp3:logging-interceptor:$okHttp3Version"
-
 
     //ui
     implementation "androidx.appcompat:appcompat:$appCompatVersion"

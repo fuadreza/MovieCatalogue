@@ -35,7 +35,7 @@ ext {
 
     mockitoVersion = '3.6.0'
     mockitoKotlinVersion = '2.2.0'
-    idleResourceVersion = '3.2.0'
+    idleResourceVersion = '3.3.0'
 
     retrofitVersion = "2.9.0"
     okHttp3Version = "4.9.1"
