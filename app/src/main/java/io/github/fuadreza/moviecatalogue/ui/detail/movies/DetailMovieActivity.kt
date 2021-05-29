@@ -38,26 +38,26 @@ class DetailMovieActivity : AppCompatActivity() {
         )[DetailMovieViewModel::class.java]
 
 
-        val extras = intent.extras
-        if (extras != null) {
-            val movieId = extras.getString(EXTRA_MOVIE)
-            if (movieId != null) {
-                viewModel.setSelectedMovie(movieId)
-                val movie = viewModel.getMovie()
-                binding.movie = movie
-                Glide.with(this)
-                    .load("file:///android_asset/${movie.imagePath}")
-                    .into(binding.ivPoster)
-                var genres = ""
-                movie.genre.forEachIndexed { index, genre ->
-                    genres += if(index<movie.genre.size)
-                        "${genre.name},"
-                    else
-                        genre.name
-                }
-                binding.tvGenre.text = genres
-            }
-        }
+//        val extras = intent.extras
+//        if (extras != null) {
+//            val movieId = extras.getString(EXTRA_MOVIE)
+//            if (movieId != null) {
+//                viewModel.setSelectedMovie(movieId)
+//                val movie = viewModel.getMovie()
+//                binding.movie = movie
+//                Glide.with(this)
+//                    .load("file:///android_asset/${movie.imagePath}")
+//                    .into(binding.ivPoster)
+//                var genres = ""
+//                movie.genre.forEachIndexed { index, genre ->
+//                    genres += if(index<movie.genre.size)
+//                        "${genre.name},"
+//                    else
+//                        genre.name
+//                }
+//                binding.tvGenre.text = genres
+//            }
+//        }
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {

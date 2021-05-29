@@ -8,125 +8,125 @@ object DataDummy {
     fun generateDummyMovies(): ArrayList<MovieEntity> {
         val movies = ArrayList<MovieEntity>()
 
-        movies.add(
-            MovieEntity("399579",
-            "Alita: Battle Angel",
-            "2019",
-            "An angel falls. A warrior rises.",
-            "When Alita awakens with no memory of who she is in a future world she does not recognize, she is taken in by Ido, a compassionate doctor who realizes that somewhere in this abandoned cyborg shell is the heart and soul of a young woman with an extraordinary past.",
-            listOf(MovieEntity.Genre("Adventure"), MovieEntity.Genre("Action"), MovieEntity.Genre("Science Fiction")),
-            "2h 2m",
-            "72",
-            "poster/movies/poster_alita.jpg")
-        )
-
-        movies.add(
-            MovieEntity("332562",
-                "A Star Is Born",
-                "2018",
-                "",
-                "Seasoned musician Jackson Maine discovers — and falls in love with — struggling artist Ally. She has just about given up on her dream to make it big as a singer — until Jack coaxes her into the spotlight. But even as Ally's career takes off, the personal side of their relationship is breaking down, as Jack fights an ongoing battle with his own internal demons.",
-                listOf(MovieEntity.Genre("Drama"), MovieEntity.Genre("Romance"), MovieEntity.Genre("Music")),
-                "2h 16m",
-                "75",
-                "poster/movies/poster_a_start_is_born.jpg")
-        )
-
-        movies.add(
-            MovieEntity("297802",
-                "Aquaman",
-                "2018",
-                "Home Is Calling",
-                "Once home to the most advanced civilization on Earth, Atlantis is now an underwater kingdom ruled by the power-hungry King Orm. With a vast army at his disposal, Orm plans to conquer the remaining oceanic people and then the surface world. Standing in his way is Arthur Curry, Orm's half-human, half-Atlantean brother and true heir to the throne.",
-                listOf(MovieEntity.Genre("Adventure"), MovieEntity.Genre("Action"), MovieEntity.Genre("Fantasy")),
-                "2h 23m",
-                "69",
-                "poster/movies/poster_aquaman.jpg")
-        )
-
-        movies.add(
-            MovieEntity("424694",
-                "Bohemian Rhapsody",
-                "2018",
-                "Fearless lives forever",
-                "Singer Freddie Mercury, guitarist Brian May, drummer Roger Taylor and bass guitarist John Deacon take the music world by storm when they form the rock 'n' roll band Queen in 1970. Hit songs become instant classics. When Mercury's increasingly wild lifestyle starts to spiral out of control, Queen soon faces its greatest challenge yet – finding a way to keep the band together amid the success and excess.",
-                listOf(MovieEntity.Genre("Music"), MovieEntity.Genre("Drama"), MovieEntity.Genre("History")),
-                "2h 15m",
-                "80",
-                "poster/movies/poster_bohemian.jpg")
-        )
-
-        movies.add(
-            MovieEntity("438650",
-                "Cold Pursuit",
-                "2019",
-                "Meet Nels Coxman. Citizen of the Year.",
-                "The quiet family life of Nels Coxman, a snowplow driver, is upended after his son's murder. Nels begins a vengeful hunt for Viking, the drug lord he holds responsible for the killing, eliminating Viking's associates one by one. As Nels draws closer to Viking, his actions bring even more unexpected and violent consequences, as he proves that revenge is all in the execution.",
-                listOf(MovieEntity.Genre("Crime"), MovieEntity.Genre("Action"), MovieEntity.Genre("Thriller")),
-                "1h 59m",
-                "57",
-                "poster/movies/poster_cold_persuit.jpg")
-        )
-
-        movies.add(
-            MovieEntity("312221",
-                "Creed",
-                "2015",
-                "Your legacy is more than a name",
-                "The former World Heavyweight Champion Rocky Balboa serves as a trainer and mentor to Adonis Johnson, the son of his late friend and former rival Apollo Creed.",
-                listOf(MovieEntity.Genre("Drama")),
-                "2h 13m",
-                "74",
-                "poster/movies/poster_creed.jpg")
-        )
-
-        movies.add(
-            MovieEntity("338952",
-                "Fantastic Beasts: The Crimes of Grindelwald",
-                "2018",
-                "Fate of One. Future of All.",
-                "Gellert Grindelwald has escaped imprisonment and has begun gathering followers to his cause—elevating wizards above all non-magical beings. The only one capable of putting a stop to him is the wizard he once called his closest friend, Albus Dumbledore. However, Dumbledore will need to seek help from the wizard who had thwarted Grindelwald once before, his former student Newt Scamander, who agrees to help, unaware of the dangers that lie ahead. Lines are drawn as love and loyalty are tested, even among the truest friends and family, in an increasingly divided wizarding world.",
-                listOf(MovieEntity.Genre("Adventure"), MovieEntity.Genre("Fantasy"), MovieEntity.Genre("Drama")),
-                "2h 14m",
-                "69",
-                "poster/movies/poster_crimes.jpg")
-        )
-
-        movies.add(
-            MovieEntity("450465",
-                "Glass",
-                "2019",
-                "You Cannot Contain What You Are",
-                "In a series of escalating encounters, former security guard David Dunn uses his supernatural abilities to track Kevin Wendell Crumb, a disturbed man who has twenty-four personalities. Meanwhile, the shadowy presence of Elijah Price emerges as an orchestrator who holds secrets critical to both men.",
-                listOf(MovieEntity.Genre("Thriller"), MovieEntity.Genre("Drama"), MovieEntity.Genre("Science Fiction")),
-                "2h 9m",
-                "67",
-                "poster/movies/poster_glass.jpg")
-        )
-
-        movies.add(
-            MovieEntity("166428",
-                "How to Train Your Dragon: The Hidden World",
-                "2019",
-                "The friendship of a lifetime",
-                "As Hiccup fulfills his dream of creating a peaceful dragon utopia, Toothless’ discovery of an untamed, elusive mate draws the Night Fury away. When danger mounts at home and Hiccup’s reign as village chief is tested, both dragon and rider must make impossible decisions to save their kind.",
-                listOf(MovieEntity.Genre("Animation"), MovieEntity.Genre("Family"), MovieEntity.Genre("Adventure")),
-                "1h 44m",
-                "78",
-                "poster/movies/poster_how_to_train.jpg")
-        )
-
-        movies.add(
-            MovieEntity("299536",
-                "Avengers: Infinity War",
-                "2018",
-                "An entire universe. Once and for all.",
-                "As the Avengers and their allies have continued to protect the world from threats too large for any one hero to handle, a new danger has emerged from the cosmic shadows: Thanos. A despot of intergalactic infamy, his goal is to collect all six Infinity Stones, artifacts of unimaginable power, and use them to inflict his twisted will on all of reality. Everything the Avengers have fought for has led up to this moment - the fate of Earth and existence itself has never been more uncertain.",
-                listOf(MovieEntity.Genre("Adventure"), MovieEntity.Genre("Action"), MovieEntity.Genre("Science Fiction")),
-                "2h 29m",
-                "83",
-                "poster/movies/poster_infinity_war.jpg")
-        )
+//        movies.add(
+//            MovieEntity("399579",
+//            "Alita: Battle Angel",
+//            "2019",
+//            "An angel falls. A warrior rises.",
+//            "When Alita awakens with no memory of who she is in a future world she does not recognize, she is taken in by Ido, a compassionate doctor who realizes that somewhere in this abandoned cyborg shell is the heart and soul of a young woman with an extraordinary past.",
+//            listOf(MovieEntity.Genre("Adventure"), MovieEntity.Genre("Action"), MovieEntity.Genre("Science Fiction")),
+//            "2h 2m",
+//            "72",
+//            "poster/movies/poster_alita.jpg")
+//        )
+//
+//        movies.add(
+//            MovieEntity("332562",
+//                "A Star Is Born",
+//                "2018",
+//                "",
+//                "Seasoned musician Jackson Maine discovers — and falls in love with — struggling artist Ally. She has just about given up on her dream to make it big as a singer — until Jack coaxes her into the spotlight. But even as Ally's career takes off, the personal side of their relationship is breaking down, as Jack fights an ongoing battle with his own internal demons.",
+//                listOf(MovieEntity.Genre("Drama"), MovieEntity.Genre("Romance"), MovieEntity.Genre("Music")),
+//                "2h 16m",
+//                "75",
+//                "poster/movies/poster_a_start_is_born.jpg")
+//        )
+//
+//        movies.add(
+//            MovieEntity("297802",
+//                "Aquaman",
+//                "2018",
+//                "Home Is Calling",
+//                "Once home to the most advanced civilization on Earth, Atlantis is now an underwater kingdom ruled by the power-hungry King Orm. With a vast army at his disposal, Orm plans to conquer the remaining oceanic people and then the surface world. Standing in his way is Arthur Curry, Orm's half-human, half-Atlantean brother and true heir to the throne.",
+//                listOf(MovieEntity.Genre("Adventure"), MovieEntity.Genre("Action"), MovieEntity.Genre("Fantasy")),
+//                "2h 23m",
+//                "69",
+//                "poster/movies/poster_aquaman.jpg")
+//        )
+//
+//        movies.add(
+//            MovieEntity("424694",
+//                "Bohemian Rhapsody",
+//                "2018",
+//                "Fearless lives forever",
+//                "Singer Freddie Mercury, guitarist Brian May, drummer Roger Taylor and bass guitarist John Deacon take the music world by storm when they form the rock 'n' roll band Queen in 1970. Hit songs become instant classics. When Mercury's increasingly wild lifestyle starts to spiral out of control, Queen soon faces its greatest challenge yet – finding a way to keep the band together amid the success and excess.",
+//                listOf(MovieEntity.Genre("Music"), MovieEntity.Genre("Drama"), MovieEntity.Genre("History")),
+//                "2h 15m",
+//                "80",
+//                "poster/movies/poster_bohemian.jpg")
+//        )
+//
+//        movies.add(
+//            MovieEntity("438650",
+//                "Cold Pursuit",
+//                "2019",
+//                "Meet Nels Coxman. Citizen of the Year.",
+//                "The quiet family life of Nels Coxman, a snowplow driver, is upended after his son's murder. Nels begins a vengeful hunt for Viking, the drug lord he holds responsible for the killing, eliminating Viking's associates one by one. As Nels draws closer to Viking, his actions bring even more unexpected and violent consequences, as he proves that revenge is all in the execution.",
+//                listOf(MovieEntity.Genre("Crime"), MovieEntity.Genre("Action"), MovieEntity.Genre("Thriller")),
+//                "1h 59m",
+//                "57",
+//                "poster/movies/poster_cold_persuit.jpg")
+//        )
+//
+//        movies.add(
+//            MovieEntity("312221",
+//                "Creed",
+//                "2015",
+//                "Your legacy is more than a name",
+//                "The former World Heavyweight Champion Rocky Balboa serves as a trainer and mentor to Adonis Johnson, the son of his late friend and former rival Apollo Creed.",
+//                listOf(MovieEntity.Genre("Drama")),
+//                "2h 13m",
+//                "74",
+//                "poster/movies/poster_creed.jpg")
+//        )
+//
+//        movies.add(
+//            MovieEntity("338952",
+//                "Fantastic Beasts: The Crimes of Grindelwald",
+//                "2018",
+//                "Fate of One. Future of All.",
+//                "Gellert Grindelwald has escaped imprisonment and has begun gathering followers to his cause—elevating wizards above all non-magical beings. The only one capable of putting a stop to him is the wizard he once called his closest friend, Albus Dumbledore. However, Dumbledore will need to seek help from the wizard who had thwarted Grindelwald once before, his former student Newt Scamander, who agrees to help, unaware of the dangers that lie ahead. Lines are drawn as love and loyalty are tested, even among the truest friends and family, in an increasingly divided wizarding world.",
+//                listOf(MovieEntity.Genre("Adventure"), MovieEntity.Genre("Fantasy"), MovieEntity.Genre("Drama")),
+//                "2h 14m",
+//                "69",
+//                "poster/movies/poster_crimes.jpg")
+//        )
+//
+//        movies.add(
+//            MovieEntity("450465",
+//                "Glass",
+//                "2019",
+//                "You Cannot Contain What You Are",
+//                "In a series of escalating encounters, former security guard David Dunn uses his supernatural abilities to track Kevin Wendell Crumb, a disturbed man who has twenty-four personalities. Meanwhile, the shadowy presence of Elijah Price emerges as an orchestrator who holds secrets critical to both men.",
+//                listOf(MovieEntity.Genre("Thriller"), MovieEntity.Genre("Drama"), MovieEntity.Genre("Science Fiction")),
+//                "2h 9m",
+//                "67",
+//                "poster/movies/poster_glass.jpg")
+//        )
+//
+//        movies.add(
+//            MovieEntity("166428",
+//                "How to Train Your Dragon: The Hidden World",
+//                "2019",
+//                "The friendship of a lifetime",
+//                "As Hiccup fulfills his dream of creating a peaceful dragon utopia, Toothless’ discovery of an untamed, elusive mate draws the Night Fury away. When danger mounts at home and Hiccup’s reign as village chief is tested, both dragon and rider must make impossible decisions to save their kind.",
+//                listOf(MovieEntity.Genre("Animation"), MovieEntity.Genre("Family"), MovieEntity.Genre("Adventure")),
+//                "1h 44m",
+//                "78",
+//                "poster/movies/poster_how_to_train.jpg")
+//        )
+//
+//        movies.add(
+//            MovieEntity("299536",
+//                "Avengers: Infinity War",
+//                "2018",
+//                "An entire universe. Once and for all.",
+//                "As the Avengers and their allies have continued to protect the world from threats too large for any one hero to handle, a new danger has emerged from the cosmic shadows: Thanos. A despot of intergalactic infamy, his goal is to collect all six Infinity Stones, artifacts of unimaginable power, and use them to inflict his twisted will on all of reality. Everything the Avengers have fought for has led up to this moment - the fate of Earth and existence itself has never been more uncertain.",
+//                listOf(MovieEntity.Genre("Adventure"), MovieEntity.Genre("Action"), MovieEntity.Genre("Science Fiction")),
+//                "2h 29m",
+//                "83",
+//                "poster/movies/poster_infinity_war.jpg")
+//        )
 
         return movies
     }

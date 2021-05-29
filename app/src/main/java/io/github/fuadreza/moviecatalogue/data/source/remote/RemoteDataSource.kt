@@ -37,7 +37,7 @@ class RemoteDataSource {
     }
 
     interface LoadMoviesCallback {
-        fun onMoviesLoaded(movies : List<MoviesResponse.Movie>?)
+        fun onMoviesLoaded(movies : ArrayList<MoviesResponse.Movie>?)
     }
 
 //    interface LoadDetailMovieCallback {

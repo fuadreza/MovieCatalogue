@@ -6,16 +6,16 @@ import io.github.fuadreza.moviecatalogue.utils.DataDummy
 
 class DetailMovieViewModel : ViewModel() {
 
-    private lateinit var movieId: String
+    private var movieId: Int? = null
 
-    fun setSelectedMovie(movieId: String) {
+    fun setSelectedMovie(movieId: Int) {
         this.movieId = movieId
     }
 
     fun getMovie(): MovieEntity {
         val moviesEntities = DataDummy.generateDummyMovies()
 
-        return moviesEntities.single { m -> m.movieId == movieId }
+        return moviesEntities.single { m -> m.id == movieId }
     }
 
 }

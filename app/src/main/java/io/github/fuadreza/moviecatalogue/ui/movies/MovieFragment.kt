@@ -8,6 +8,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import io.github.fuadreza.moviecatalogue.databinding.FragmentMovieBinding
+import io.github.fuadreza.moviecatalogue.viewmodel.ViewModelFactory
 
 class MovieFragment : Fragment() {
 
@@ -25,20 +26,27 @@ class MovieFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         if (activity != null) {
+
+            val factory = ViewModelFactory.getInstance(requireActivity())
+
             val viewModel = ViewModelProvider(
                 this,
-                ViewModelProvider.NewInstanceFactory()
+                factory
             )[MovieViewModel::class.java]
 
-            val movies = viewModel.getMovies()
+            viewModel.getMovies().observe(viewLifecycleOwner, { movies ->
+                val movieAdapter = MovieAdapter()
+                movieAdapter.setMovies(movies)
+                binding.rvMovie.apply {
+                    layoutManager = LinearLayoutManager(context)
+                    setHasFixedSize(false)
+                    adapter = movieAdapter
+                }
+            })
 
-            val movieAdapter = MovieAdapter()
-            movieAdapter.setMovies(movies)
-            binding.rvMovie.apply {
-                layoutManager = LinearLayoutManager(context)
-                setHasFixedSize(false)
-                adapter = movieAdapter
-            }
+//            val movies = viewModel.getMovies()
+
+
         }
     }
 

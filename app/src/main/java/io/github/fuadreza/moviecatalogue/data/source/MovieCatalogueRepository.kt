@@ -16,11 +16,11 @@ class MovieCatalogueRepository private constructor(private val remoteDataSource:
             }
     }
 
-    override fun getMovies(): LiveData<List<MovieEntity>> {
-        val movieResult = MutableLiveData<List<MovieEntity>>()
+    override fun getMovies(): LiveData<ArrayList<MovieEntity>> {
+        val movieResult = MutableLiveData<ArrayList<MovieEntity>>()
 
         remoteDataSource.getMovies(object : RemoteDataSource.LoadMoviesCallback {
-            override fun onMoviesLoaded(movies: List<MoviesResponse.Movie>?) {
+            override fun onMoviesLoaded(movies: ArrayList<MoviesResponse.Movie>?) {
                 val movieList = ArrayList<MovieEntity>()
                 if (movies != null) {
                     for (response in movies) {

@@ -7,6 +7,6 @@ import io.github.fuadreza.moviecatalogue.utils.DataDummy
 
 class MovieViewModel(private val movieCatalogueRepository: MovieCatalogueRepository) : ViewModel() {
 
-    fun getMovies(): ArrayList<MovieEntity> = DataDummy.generateDummyMovies()
+    fun getMovies() = movieCatalogueRepository.getMovies()
 
 }

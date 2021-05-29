@@ -92,7 +92,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="8dp"
-                    android:text="@{movie.releaseYear}"
+
                     android:textSize="16sp"
                     app:layout_constraintBottom_toTopOf="@id/tvTagline"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -104,7 +104,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="8dp"
-                    android:text="@{movie.tagline}"
+
                     android:textSize="18sp"
                     android:textStyle="italic"
                     app:layout_constraintBottom_toBottomOf="@id/ivPoster"
@@ -174,7 +174,7 @@
                                 android:id="@+id/tvDuration"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:text="@{movie.duration}"
+
                                 android:textAlignment="center"
                                 android:textSize="24sp"
                                 tools:text="2h10m" />
@@ -210,7 +210,7 @@
                                 android:id="@+id/tvScore"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:text="@{movie.score}"
+
                                 android:textAlignment="center"
                                 android:textSize="36sp"
                                 tools:text="16" />
