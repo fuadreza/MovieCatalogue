@@ -2,6 +2,8 @@ package io.github.fuadreza.moviecatalogue.data.source.remote.api
 
 import io.github.fuadreza.moviecatalogue.data.source.remote.response.MovieDetailResponse
 import io.github.fuadreza.moviecatalogue.data.source.remote.response.MoviesResponse
+import io.github.fuadreza.moviecatalogue.data.source.remote.response.TvShowDetailResponse
+import io.github.fuadreza.moviecatalogue.data.source.remote.response.TvShowResponse
 import retrofit2.Call
 import retrofit2.http.GET
 import retrofit2.http.Path
@@ -16,7 +18,19 @@ interface ApiService {
 
     @GET("movie/{id}")
     fun getMovieDetail(
-        @Path("id") id: String,
+        @Path("id") id: Int,
         @Query("api_key") apiKey: String
     ) : Call<MovieDetailResponse>
+
+    @GET("discover/tv")
+    fun getTvShows(
+        @Query("api_key") apiKey: String
+    ) : Call<TvShowResponse>
+
+    @GET("tv/{id}")
+    fun getTvShowDetail(
+        @Path("id") id: Int,
+        @Query("api_key") apiKey: String
+    ) : Call<TvShowDetailResponse>
+
 }

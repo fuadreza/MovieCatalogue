@@ -2,9 +2,12 @@ package io.github.fuadreza.moviecatalogue.data.source
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import io.github.fuadreza.moviecatalogue.data.DetailEntity
 import io.github.fuadreza.moviecatalogue.data.MovieEntity
+import io.github.fuadreza.moviecatalogue.data.TvShowEntity
 import io.github.fuadreza.moviecatalogue.data.source.remote.RemoteDataSource
 import io.github.fuadreza.moviecatalogue.data.source.remote.response.MoviesResponse
+import io.github.fuadreza.moviecatalogue.data.source.remote.response.TvShowResponse
 
 class MovieCatalogueRepository private constructor(private val remoteDataSource: RemoteDataSource) : MovieCatalogueDataSource{
     companion object {
@@ -36,4 +39,26 @@ class MovieCatalogueRepository private constructor(private val remoteDataSource:
         })
         return movieResult
     }
+
+    override fun getTvShows(): LiveData<ArrayList<TvShowEntity>> {
+        val tvShowResult = MutableLiveData<ArrayList<TvShowEntity>>()
+
+        remoteDataSource.getTvShows(object: RemoteDataSource.LoadTvShowsCallback {
+            override fun onTvShowsLoaded(tvShows: ArrayList<TvShowResponse.TvShow>?) {
+                val tvShowList = ArrayList<TvShowEntity>()
+                if(tvShows != null){
+                    for (response in tvShows){
+                        with(response){
+                            val poster = poster_path ?: ""
+                            val tvShow = TvShowEntity(id, name, overview, poster)
+                            tvShowList.add(tvShow)
+                        }
+                    }
+                    tvShowResult.postValue(tvShowList)
+                }
+            }
+        })
+        return  tvShowResult
+    }
+
 }

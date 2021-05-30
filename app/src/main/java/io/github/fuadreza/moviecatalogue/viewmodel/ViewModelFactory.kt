@@ -6,6 +6,7 @@ import androidx.lifecycle.ViewModelProvider
 import io.github.fuadreza.moviecatalogue.data.source.MovieCatalogueRepository
 import io.github.fuadreza.moviecatalogue.di.Injection
 import io.github.fuadreza.moviecatalogue.ui.movies.MovieViewModel
+import io.github.fuadreza.moviecatalogue.ui.tv_shows.TvShowViewModel
 
 class ViewModelFactory private constructor(private val mMovieCatalogueRepository: MovieCatalogueRepository) : ViewModelProvider.NewInstanceFactory() {
 
@@ -23,9 +24,12 @@ class ViewModelFactory private constructor(private val mMovieCatalogueRepository
 
     @Suppress("UNCHECKED_CAST")
     override fun <T : ViewModel> create(modelClass: Class<T>): T {
-        when {
+        return when {
             modelClass.isAssignableFrom(MovieViewModel::class.java) -> {
-                return MovieViewModel(mMovieCatalogueRepository) as T
+                MovieViewModel(mMovieCatalogueRepository) as T
+            }
+            modelClass.isAssignableFrom(TvShowViewModel::class.java) -> {
+                TvShowViewModel(mMovieCatalogueRepository) as T
             }
             else -> throw Throwable("Unknown ViewModel class: " + modelClass.name)
         }

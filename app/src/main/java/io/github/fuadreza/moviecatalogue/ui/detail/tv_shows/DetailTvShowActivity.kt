@@ -34,26 +34,26 @@ class DetailTvShowActivity : AppCompatActivity() {
         )[DetailTvShowViewModel::class.java]
 
 
-        val extras = intent.extras
-        if (extras != null) {
-            val tvShowId = extras.getString(EXTRA_TV_SHOW)
-            if (tvShowId != null) {
-                viewModel.setSelectedTvShow(tvShowId)
-                val tvShow = viewModel.getTvShow()
-                binding.tvShow = tvShow
-                Glide.with(this)
-                    .load("file:///android_asset/${tvShow.imagePath}")
-                    .into(binding.ivPoster)
-                var genres = ""
-                tvShow.genre.forEachIndexed { index, genre ->
-                    genres += if(index<tvShow.genre.size)
-                        "${genre.name},"
-                    else
-                        genre.name
-                }
-                binding.tvGenre.text = genres
-            }
-        }
+//        val extras = intent.extras
+//        if (extras != null) {
+//            val tvShowId = extras.getString(EXTRA_TV_SHOW)
+//            if (tvShowId != null) {
+//                viewModel.setSelectedTvShow(tvShowId)
+//                val tvShow = viewModel.getTvShow()
+//                binding.tvShow = tvShow
+//                Glide.with(this)
+//                    .load("file:///android_asset/${tvShow.imagePath}")
+//                    .into(binding.ivPoster)
+//                var genres = ""
+//                tvShow.genre.forEachIndexed { index, genre ->
+//                    genres += if(index<tvShow.genre.size)
+//                        "${genre.name},"
+//                    else
+//                        genre.name
+//                }
+//                binding.tvGenre.text = genres
+//            }
+//        }
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {

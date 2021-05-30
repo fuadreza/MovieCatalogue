@@ -8,6 +8,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import io.github.fuadreza.moviecatalogue.databinding.FragmentTvShowBinding
+import io.github.fuadreza.moviecatalogue.viewmodel.ViewModelFactory
 
 class TvShowFragment : Fragment() {
 
@@ -25,20 +26,24 @@ class TvShowFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         if (activity != null) {
+
+            val factory = ViewModelFactory.getInstance(requireActivity())
+
             val viewModel = ViewModelProvider(
                 this,
-                ViewModelProvider.NewInstanceFactory()
+                factory
             )[TvShowViewModel::class.java]
 
-            val tvShows = viewModel.getTvShows()
+            viewModel.getTvShows().observe(viewLifecycleOwner, { tvShows ->
+                val tvShowAdapter= TvShowAdapter()
+                tvShowAdapter.setTvShows(tvShows)
+                binding.rvTvShow.apply {
+                    layoutManager = LinearLayoutManager(context)
+                    setHasFixedSize(false)
+                    adapter = tvShowAdapter
+                }
+            })
 
-            val tvShowAdapter= TvShowAdapter()
-            tvShowAdapter.setTvShows(tvShows)
-            binding.rvTvShow.apply {
-                layoutManager = LinearLayoutManager(context)
-                setHasFixedSize(false)
-                adapter = tvShowAdapter
-            }
         }
     }
 

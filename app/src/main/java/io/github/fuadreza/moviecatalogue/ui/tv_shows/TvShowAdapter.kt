@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import io.github.fuadreza.moviecatalogue.BuildConfig
 import io.github.fuadreza.moviecatalogue.data.TvShowEntity
 import io.github.fuadreza.moviecatalogue.databinding.ItemsTvShowBinding
 import io.github.fuadreza.moviecatalogue.ui.detail.tv_shows.DetailTvShowActivity
@@ -36,11 +37,11 @@ class TvShowAdapter : RecyclerView.Adapter<TvShowAdapter.ViewHolder>() {
             with(binding){
                 tvShow = mTvShow
                 Glide.with(itemView)
-                    .load("file:///android_asset/${mTvShow.imagePath}")
+                    .load(BuildConfig.IMAGE_URL + mTvShow.posterPath)
                     .into(ivPoster)
                 itemView.setOnClickListener {
                     val intent = Intent(itemView.context, DetailTvShowActivity::class.java)
-                    intent.putExtra(DetailTvShowActivity.EXTRA_TV_SHOW, mTvShow.tvShowId)
+                    intent.putExtra(DetailTvShowActivity.EXTRA_TV_SHOW, mTvShow.id)
                     itemView.context.startActivity(intent)
                 }
             }
