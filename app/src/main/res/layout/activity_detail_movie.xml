@@ -7,7 +7,7 @@
 
         <variable
             name="movie"
-            type="io.github.fuadreza.moviecatalogue.data.MovieEntity" />
+            type="io.github.fuadreza.moviecatalogue.data.DetailEntity" />
     </data>
 
     <androidx.coordinatorlayout.widget.CoordinatorLayout
@@ -92,7 +92,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="8dp"
-
+                    android:text="@{movie.releaseYear}"
                     android:textSize="16sp"
                     app:layout_constraintBottom_toTopOf="@id/tvTagline"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -104,7 +104,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="8dp"
-
+                    android:text="@{movie.tagline}"
                     android:textSize="18sp"
                     android:textStyle="italic"
                     app:layout_constraintBottom_toBottomOf="@id/ivPoster"
@@ -160,7 +160,7 @@
                             android:layout_marginVertical="8dp"
                             android:background="@color/light_grey" />
 
-                        <LinearLayout
+                        <!--<LinearLayout
                             android:id="@+id/containerDuration"
                             android:layout_width="0dp"
                             android:layout_height="match_parent"
@@ -188,7 +188,7 @@
                                 android:textAlignment="center"
                                 android:textStyle="bold" />
 
-                        </LinearLayout>
+                        </LinearLayout>-->
 
                         <View
                             android:layout_width="1dp"
@@ -210,9 +210,9 @@
                                 android:id="@+id/tvScore"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-
+                                android:text="@{movie.popularity}"
                                 android:textAlignment="center"
-                                android:textSize="36sp"
+                                android:textSize="24sp"
                                 tools:text="16" />
 
                             <TextView

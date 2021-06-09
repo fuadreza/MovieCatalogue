@@ -7,7 +7,7 @@
 
         <variable
             name="tvShow"
-            type="io.github.fuadreza.moviecatalogue.data.TvShowEntity" />
+            type="io.github.fuadreza.moviecatalogue.data.DetailEntity" />
     </data>
 
     <androidx.coordinatorlayout.widget.CoordinatorLayout
@@ -32,8 +32,7 @@
         <androidx.core.widget.NestedScrollView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginTop="?attr/actionBarSize"
-            >
+            android:layout_marginTop="?attr/actionBarSize">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
@@ -45,10 +44,10 @@
                     android:id="@+id/ivPoster"
                     android:layout_width="200dp"
                     android:layout_height="300dp"
+                    android:contentDescription="@string/content_image"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    tools:src="@color/purple_700"
-                    android:contentDescription="@string/content_image" />
+                    tools:src="@color/purple_700" />
 
                 <TextView
                     android:id="@+id/labelTitle"
@@ -92,7 +91,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="8dp"
-
+                    android:text="@{tvShow.releaseYear}"
                     android:textSize="16sp"
                     app:layout_constraintBottom_toTopOf="@id/tvTagline"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -104,7 +103,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="8dp"
-
+                    android:text="@{tvShow.tagline}"
                     android:textSize="18sp"
                     android:textStyle="italic"
                     app:layout_constraintBottom_toBottomOf="@id/ivPoster"
@@ -160,7 +159,7 @@
                             android:layout_marginVertical="8dp"
                             android:background="@color/light_grey" />
 
-                        <LinearLayout
+                        <!--<LinearLayout
                             android:id="@+id/containerDuration"
                             android:layout_width="0dp"
                             android:layout_height="match_parent"
@@ -188,7 +187,7 @@
                                 android:textAlignment="center"
                                 android:textStyle="bold" />
 
-                        </LinearLayout>
+                        </LinearLayout>-->
 
                         <View
                             android:layout_width="1dp"
@@ -210,9 +209,9 @@
                                 android:id="@+id/tvScore"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-
+                                android:text="@{tvShow.popularity}"
                                 android:textAlignment="center"
-                                android:textSize="36sp"
+                                android:textSize="24sp"
                                 tools:text="16" />
 
                             <TextView
@@ -244,8 +243,8 @@
                     android:id="@+id/tvOverview"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    app:layout_constraintTop_toBottomOf="@id/labelOverview"
                     android:text="@{tvShow.overview}"
+                    app:layout_constraintTop_toBottomOf="@id/labelOverview"
                     tools:text="@tools:sample/lorem/random" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>

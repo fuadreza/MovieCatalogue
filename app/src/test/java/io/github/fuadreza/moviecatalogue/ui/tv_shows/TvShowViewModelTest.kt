@@ -9,15 +9,15 @@ class TvShowViewModelTest {
 
     private lateinit var viewModel: TvShowViewModel
 
-    @Before
-    fun setup(){
-        viewModel = TvShowViewModel()
-    }
-
-    @Test
-    fun getTvShows() {
-        val tvShowEntities = viewModel.getTvShows()
-        assertNotNull(tvShowEntities)
-        assertEquals(10, tvShowEntities.size)
-    }
+//    @Before
+//    fun setup(){
+//        viewModel = TvShowViewModel()
+//    }
+//
+//    @Test
+//    fun getTvShows() {
+//        val tvShowEntities = viewModel.getTvShows()
+//        assertNotNull(tvShowEntities)
+//        assertEquals(10, tvShowEntities.size)
+//    }
 }

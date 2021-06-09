@@ -77,6 +77,7 @@ dependencies {
 
     //mockito
     testImplementation "androidx.arch.core:core-testing:$androidCoreTestVersion"
+    testImplementation "org.mockito:mockito-inline:$mockitoVersion"
     testImplementation "com.nhaarman.mockitokotlin2:mockito-kotlin:$mockitoKotlinVersion"
 
     //idling resource
