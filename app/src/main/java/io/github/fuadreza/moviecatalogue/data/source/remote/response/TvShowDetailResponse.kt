@@ -4,26 +4,26 @@ import com.google.gson.annotations.SerializedName
 
 class TvShowDetailResponse(
     @SerializedName("id")
-    var id: Int? = null,
+    var id: Int,
     @SerializedName("name")
-    var name: String? = null,
+    var name: String,
     @SerializedName("first_air_date")
-    var firstAirDate: String? = null,
+    var firstAirDate: String,
     @SerializedName("genres")
-    var genre: ArrayList<Genre>,
+    var genres: ArrayList<Genre>,
     @SerializedName("tagline")
-    var tagline: String? = null,
+    var tagline: String,
     @SerializedName("overview")
-    var overview: String? = null,
+    var overview: String,
     @SerializedName("popularity")
-    var popularity: Int? = null,
+    var popularity: Double,
     @SerializedName("poster_path")
     var posterPath: String? = null
 ){
     class Genre(
         @SerializedName("id")
-        var id: Int? = null,
+        var id: Int,
         @SerializedName("name")
-        var name: String? = null
+        var name: String
     )
 }

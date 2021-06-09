@@ -1,21 +1,19 @@
 package io.github.fuadreza.moviecatalogue.ui.detail.tv_shows
 
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
-import io.github.fuadreza.moviecatalogue.data.TvShowEntity
-import io.github.fuadreza.moviecatalogue.utils.DataDummy
+import io.github.fuadreza.moviecatalogue.data.DetailEntity
+import io.github.fuadreza.moviecatalogue.data.source.MovieCatalogueRepository
 
-class DetailTvShowViewModel : ViewModel() {
+class DetailTvShowViewModel(private val movieCatalogueRepository: MovieCatalogueRepository) :
+    ViewModel() {
 
-    private var tvShowId: Int? = null
+    private lateinit var detailTvShow: LiveData<DetailEntity>
 
-    fun setSelectedTvShow(tvShowId: Int) {
-        this.tvShowId = tvShowId
-    }
+    fun dataDetailTvShow() = detailTvShow
 
-    fun getTvShow(): TvShowEntity {
-        val tvShowEntities = DataDummy.generateDummyTvShow()
-
-        return tvShowEntities.single { m -> m.id == tvShowId }
+    fun getDetailTvShow(tvShowId: Int) {
+        detailTvShow = movieCatalogueRepository.getDetailTvShow(tvShowId)
     }
 
 }

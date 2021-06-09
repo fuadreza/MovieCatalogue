@@ -8,8 +8,10 @@ import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import com.bumptech.glide.Glide
+import io.github.fuadreza.moviecatalogue.BuildConfig
 import io.github.fuadreza.moviecatalogue.R
 import io.github.fuadreza.moviecatalogue.databinding.ActivityDetailMovieBinding
+import io.github.fuadreza.moviecatalogue.viewmodel.ViewModelFactory
 
 
 class DetailMovieActivity : AppCompatActivity() {
@@ -28,36 +30,36 @@ class DetailMovieActivity : AppCompatActivity() {
 
         setSupportActionBar(binding.toolbar)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
-//        binding.toolbar.post {
-//            binding.toolbar.inflateMenu(R.menu.menu_detail)
-//        }
+
+        val factory = ViewModelFactory.getInstance(this)
 
         val viewModel = ViewModelProvider(
             this,
-            ViewModelProvider.NewInstanceFactory()
+            factory
         )[DetailMovieViewModel::class.java]
 
+        val extras = intent.extras
+        if (extras != null) {
+            val movieId = extras.getInt(EXTRA_MOVIE)
+            if (movieId != null) {
+                viewModel.getDetailMovie(movieId)
+                viewModel.dataDetailMovie().observe(this, { detailMovie ->
+                    binding.movie = detailMovie
+                    Glide.with(this)
+                        .load(BuildConfig.IMAGE_URL + detailMovie.posterPath)
+                        .into(binding.ivPoster)
 
-//        val extras = intent.extras
-//        if (extras != null) {
-//            val movieId = extras.getString(EXTRA_MOVIE)
-//            if (movieId != null) {
-//                viewModel.setSelectedMovie(movieId)
-//                val movie = viewModel.getMovie()
-//                binding.movie = movie
-//                Glide.with(this)
-//                    .load("file:///android_asset/${movie.imagePath}")
-//                    .into(binding.ivPoster)
-//                var genres = ""
-//                movie.genre.forEachIndexed { index, genre ->
-//                    genres += if(index<movie.genre.size)
-//                        "${genre.name},"
-//                    else
-//                        genre.name
-//                }
-//                binding.tvGenre.text = genres
-//            }
-//        }
+                    var genres = ""
+                    detailMovie.genres.forEachIndexed { index, genre ->
+                        genres += if (index < detailMovie.genres.size)
+                            "${genre.name},"
+                        else
+                            genre.name
+                    }
+                    binding.tvGenre.text = genres
+                })
+            }
+        }
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
@@ -66,7 +68,7 @@ class DetailMovieActivity : AppCompatActivity() {
         return true
     }
 
-    override fun onOptionsItemSelected(item: MenuItem) = when(item.itemId){
+    override fun onOptionsItemSelected(item: MenuItem) = when (item.itemId) {
         R.id.action_share -> {
             share()
             true
@@ -76,7 +78,7 @@ class DetailMovieActivity : AppCompatActivity() {
         }
     }
 
-    private fun share(){
+    private fun share() {
         try {
             val shareIntent = Intent(Intent.ACTION_SEND)
             shareIntent.type = "text/plain"

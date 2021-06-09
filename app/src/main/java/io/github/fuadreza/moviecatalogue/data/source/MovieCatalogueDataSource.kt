@@ -7,7 +7,7 @@ import io.github.fuadreza.moviecatalogue.data.TvShowEntity
 
 interface MovieCatalogueDataSource {
     fun getMovies(): LiveData<ArrayList<MovieEntity>>
-//    fun getDetailMovie(movieId: String): LiveData<DetailEntity>
+    fun getDetailMovie(movieId: Int): LiveData<DetailEntity>
     fun getTvShows(): LiveData<ArrayList<TvShowEntity>>
-//    fun getDetailTvShow(tvShowId: String): LiveData<DetailEntity>
+    fun getDetailTvShow(tvShowId: Int): LiveData<DetailEntity>
 }

@@ -44,9 +44,6 @@ class MovieFragment : Fragment() {
                 }
             })
 
-//            val movies = viewModel.getMovies()
-
-
         }
     }
 
