@@ -9,7 +9,7 @@ import io.github.fuadreza.moviecatalogue.data.source.remote.response.MoviesRespo
 import io.github.fuadreza.moviecatalogue.data.source.remote.response.TvShowDetailResponse
 import io.github.fuadreza.moviecatalogue.data.source.remote.response.TvShowResponse
 
-class FakeMovieCatalogueRepository(private val remoteDataSource: RemoteDataSource):
+class FakeMovieCatalogueRepository(private val remoteDataSource: RemoteDataSource) :
     MovieCatalogueDataSource {
 
     override fun getMovies(): LiveData<ArrayList<MovieEntity>> {
@@ -18,9 +18,9 @@ class FakeMovieCatalogueRepository(private val remoteDataSource: RemoteDataSourc
         remoteDataSource.getMovies(object : RemoteDataSource.LoadMoviesCallback {
             override fun onMoviesLoaded(movies: ArrayList<MoviesResponse.Movie>?) {
                 val movieList = ArrayList<MovieEntity>()
-                if (movies != null){
-                    for(movie in movies){
-                        with(movie){
+                if (movies != null) {
+                    for (movie in movies) {
+                        with(movie) {
                             movieList.add(MovieEntity(id, title, overview, poster_path.toString()))
                         }
                     }
@@ -35,13 +35,13 @@ class FakeMovieCatalogueRepository(private val remoteDataSource: RemoteDataSourc
     override fun getDetailMovie(movieId: Int): LiveData<DetailEntity> {
         val movieDetailResult = MutableLiveData<DetailEntity>()
 
-        remoteDataSource.getDetailMovie(object: RemoteDataSource.LoadDetailMovieCallback {
+        remoteDataSource.getDetailMovie(object : RemoteDataSource.LoadDetailMovieCallback {
             override fun onDetailMovieLoaded(movieDetail: MovieDetailResponse?) {
-                if(movieDetail != null){
-                    with(movieDetail){
+                if (movieDetail != null) {
+                    with(movieDetail) {
                         val listGenre = ArrayList<DetailEntity.Genre>()
 
-                        for (genre in genres){
+                        for (genre in genres) {
                             listGenre.add(DetailEntity.Genre(genre.id, genre.name))
                         }
 
@@ -69,10 +69,17 @@ class FakeMovieCatalogueRepository(private val remoteDataSource: RemoteDataSourc
         remoteDataSource.getTvShows(object : RemoteDataSource.LoadTvShowsCallback {
             override fun onTvShowsLoaded(tvShows: ArrayList<TvShowResponse.TvShow>?) {
                 val tvShowsList = ArrayList<TvShowEntity>()
-                if(tvShows != null){
-                    for(tvShow in tvShows){
-                        with(tvShow){
-                            tvShowsList.add(TvShowEntity(id, name, overview, poster_path.toString()))
+                if (tvShows != null) {
+                    for (tvShow in tvShows) {
+                        with(tvShow) {
+                            tvShowsList.add(
+                                TvShowEntity(
+                                    id,
+                                    name,
+                                    overview,
+                                    poster_path.toString()
+                                )
+                            )
                         }
                     }
                     tvShowsResult.postValue(tvShowsList)
@@ -86,13 +93,13 @@ class FakeMovieCatalogueRepository(private val remoteDataSource: RemoteDataSourc
     override fun getDetailTvShow(tvShowId: Int): LiveData<DetailEntity> {
         val tvShowDetailResult = MutableLiveData<DetailEntity>()
 
-        remoteDataSource.getDetailTvShow(object: RemoteDataSource.LoadDetailTvShowCallback {
+        remoteDataSource.getDetailTvShow(object : RemoteDataSource.LoadDetailTvShowCallback {
             override fun onDetailTvShowLoaded(tvShowDetail: TvShowDetailResponse?) {
-                if(tvShowDetail != null){
-                    with(tvShowDetail){
+                if (tvShowDetail != null) {
+                    with(tvShowDetail) {
                         val listGenre = ArrayList<DetailEntity.Genre>()
 
-                        for (genre in genres){
+                        for (genre in genres) {
                             listGenre.add(DetailEntity.Genre(genre.id, genre.name))
                         }
 

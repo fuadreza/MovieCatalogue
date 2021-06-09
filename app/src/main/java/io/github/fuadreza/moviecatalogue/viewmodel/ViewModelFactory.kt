@@ -10,7 +10,8 @@ import io.github.fuadreza.moviecatalogue.ui.detail.tv_shows.DetailTvShowViewMode
 import io.github.fuadreza.moviecatalogue.ui.movies.MovieViewModel
 import io.github.fuadreza.moviecatalogue.ui.tv_shows.TvShowViewModel
 
-class ViewModelFactory private constructor(private val mMovieCatalogueRepository: MovieCatalogueRepository) : ViewModelProvider.NewInstanceFactory() {
+class ViewModelFactory private constructor(private val mMovieCatalogueRepository: MovieCatalogueRepository) :
+    ViewModelProvider.NewInstanceFactory() {
 
     companion object {
         @Volatile

@@ -1,7 +1,6 @@
 package io.github.fuadreza.moviecatalogue.ui.detail.movies
 
 import android.content.Intent
-import android.net.Uri
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
@@ -42,8 +41,8 @@ class DetailMovieActivity : AppCompatActivity() {
         if (extras != null) {
             val movieId = extras.getInt(EXTRA_MOVIE)
             if (movieId != null) {
-                viewModel.getDetailMovie(movieId)
-                viewModel.dataDetailMovie().observe(this, { detailMovie ->
+                viewModel.setMovieId(movieId)
+                viewModel.getDetailMovie().observe(this, { detailMovie ->
                     binding.movie = detailMovie
                     Glide.with(this)
                         .load(BuildConfig.IMAGE_URL + detailMovie.posterPath)

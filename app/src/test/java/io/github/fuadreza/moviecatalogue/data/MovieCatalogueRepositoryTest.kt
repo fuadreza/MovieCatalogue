@@ -32,7 +32,7 @@ class MovieCatalogueRepositoryTest {
     private val tvShowDetail = DataDummy.generateDummyDetailTvShow(tvShowId)
 
     @Test
-    fun getMovies(){
+    fun getMovies() {
         doAnswer { invocationOnMock ->
             (invocationOnMock.arguments[0] as RemoteDataSource.LoadMoviesCallback)
                 .onMoviesLoaded(moviesResponse)
@@ -45,21 +45,22 @@ class MovieCatalogueRepositoryTest {
     }
 
     @Test
-    fun getDetailMovie(){
+    fun getDetailMovie() {
         doAnswer { invocationOnMock ->
             (invocationOnMock.arguments[0] as RemoteDataSource.LoadDetailMovieCallback)
                 .onDetailMovieLoaded(movieDetail)
             null
         }.`when`(remote).getDetailMovie(any(), eq(movieId))
 
-        val movieDetailEntity = LiveDataTestUtil.getValue(movieCatalogueRepository.getDetailMovie(movieId))
+        val movieDetailEntity =
+            LiveDataTestUtil.getValue(movieCatalogueRepository.getDetailMovie(movieId))
         verify(remote).getDetailMovie(any(), eq(movieId))
         assertNotNull(movieDetailEntity)
         assertEquals(movieDetail.id, movieDetailEntity.id)
     }
 
     @Test
-    fun getTvShows(){
+    fun getTvShows() {
         doAnswer { invocationOnMock ->
             (invocationOnMock.arguments[0] as RemoteDataSource.LoadTvShowsCallback)
                 .onTvShowsLoaded(tvShowResponse)
@@ -72,14 +73,15 @@ class MovieCatalogueRepositoryTest {
     }
 
     @Test
-    fun getDetailTvShow(){
+    fun getDetailTvShow() {
         doAnswer { invocationOnMock ->
             (invocationOnMock.arguments[0] as RemoteDataSource.LoadDetailTvShowCallback)
                 .onDetailTvShowLoaded(tvShowDetail)
             null
         }.`when`(remote).getDetailTvShow(any(), eq(tvShowId))
 
-        val tvShowDetailEntity = LiveDataTestUtil.getValue(movieCatalogueRepository.getDetailTvShow(tvShowId))
+        val tvShowDetailEntity =
+            LiveDataTestUtil.getValue(movieCatalogueRepository.getDetailTvShow(tvShowId))
         verify(remote).getDetailTvShow(any(), eq(tvShowId))
         assertNotNull(tvShowDetailEntity)
         assertEquals(tvShowDetail.id, tvShowDetailEntity.id)

@@ -35,7 +35,7 @@ class TvShowFragment : Fragment() {
             )[TvShowViewModel::class.java]
 
             viewModel.getTvShows().observe(viewLifecycleOwner, { tvShows ->
-                val tvShowAdapter= TvShowAdapter()
+                val tvShowAdapter = TvShowAdapter()
                 tvShowAdapter.setTvShows(tvShows)
                 binding.rvTvShow.apply {
                     layoutManager = LinearLayoutManager(context)

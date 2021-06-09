@@ -37,8 +37,9 @@ class DetailMovieViewModelTest {
     private lateinit var movieObserver: Observer<DetailEntity>
 
     @Before
-    fun setup(){
+    fun setup() {
         viewModel = DetailMovieViewModel(movieCatalogueRepository)
+        viewModel.setMovieId(movieId)
     }
 
     @Test
@@ -47,7 +48,7 @@ class DetailMovieViewModelTest {
         movieEntity.value = dummyMovie
 
         `when`(movieCatalogueRepository.getDetailMovie(movieId)).thenReturn(movieEntity)
-        val detailEntity = viewModel.dataDetailMovie().value as DetailEntity
+        val detailEntity = viewModel.getDetailMovie().value as DetailEntity
         verify(movieCatalogueRepository).getDetailMovie(movieId)
 
         assertNotNull(detailEntity)
@@ -55,7 +56,7 @@ class DetailMovieViewModelTest {
         assertEquals(dummyMovie.title, detailEntity.title)
         assertEquals(dummyMovie.tagline, detailEntity.tagline)
 
-        viewModel.dataDetailMovie().observeForever(movieObserver)
+        viewModel.getDetailMovie().observeForever(movieObserver)
         verify(movieObserver).onChanged(dummyMovie)
     }
 }

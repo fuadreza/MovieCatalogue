@@ -14,14 +14,15 @@ class TvShowAdapter : RecyclerView.Adapter<TvShowAdapter.ViewHolder>() {
 
     private val listTvShows = ArrayList<TvShowEntity>()
 
-    fun setTvShows(tvShows: ArrayList<TvShowEntity>?){
+    fun setTvShows(tvShows: ArrayList<TvShowEntity>?) {
         if (tvShows == null) return
         this.listTvShows.clear()
         this.listTvShows.addAll(tvShows)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val itemsTvShowBinding = ItemsTvShowBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        val itemsTvShowBinding =
+            ItemsTvShowBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return ViewHolder(itemsTvShowBinding)
     }
 
@@ -32,9 +33,10 @@ class TvShowAdapter : RecyclerView.Adapter<TvShowAdapter.ViewHolder>() {
         holder.bind(tvShow)
     }
 
-    class ViewHolder(private val binding: ItemsTvShowBinding): RecyclerView.ViewHolder(binding.root){
-        fun bind(mTvShow: TvShowEntity){
-            with(binding){
+    class ViewHolder(private val binding: ItemsTvShowBinding) :
+        RecyclerView.ViewHolder(binding.root) {
+        fun bind(mTvShow: TvShowEntity) {
+            with(binding) {
                 tvShow = mTvShow
                 Glide.with(itemView)
                     .load(BuildConfig.IMAGE_URL + mTvShow.posterPath)

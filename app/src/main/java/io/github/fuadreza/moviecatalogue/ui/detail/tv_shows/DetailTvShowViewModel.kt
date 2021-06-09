@@ -10,10 +10,15 @@ class DetailTvShowViewModel(private val movieCatalogueRepository: MovieCatalogue
 
     private lateinit var detailTvShow: LiveData<DetailEntity>
 
+    private lateinit var tvShowId: String
+
+    fun setTvShowId(tvShowId: Int) {
+        this.tvShowId = tvShowId.toString()
+    }
+
     fun dataDetailTvShow() = detailTvShow
 
-    fun getDetailTvShow(tvShowId: Int) {
-        detailTvShow = movieCatalogueRepository.getDetailTvShow(tvShowId)
-    }
+    fun getDetailTvShow() = movieCatalogueRepository.getDetailTvShow(tvShowId.toInt())
+
 
 }

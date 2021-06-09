@@ -11,7 +11,8 @@ import io.github.fuadreza.moviecatalogue.data.source.remote.response.MoviesRespo
 import io.github.fuadreza.moviecatalogue.data.source.remote.response.TvShowDetailResponse
 import io.github.fuadreza.moviecatalogue.data.source.remote.response.TvShowResponse
 
-class MovieCatalogueRepository private constructor(private val remoteDataSource: RemoteDataSource) : MovieCatalogueDataSource{
+class MovieCatalogueRepository private constructor(private val remoteDataSource: RemoteDataSource) :
+    MovieCatalogueDataSource {
     companion object {
         @Volatile
         private var instance: MovieCatalogueRepository? = null
@@ -45,12 +46,12 @@ class MovieCatalogueRepository private constructor(private val remoteDataSource:
     override fun getTvShows(): LiveData<ArrayList<TvShowEntity>> {
         val tvShowResult = MutableLiveData<ArrayList<TvShowEntity>>()
 
-        remoteDataSource.getTvShows(object: RemoteDataSource.LoadTvShowsCallback {
+        remoteDataSource.getTvShows(object : RemoteDataSource.LoadTvShowsCallback {
             override fun onTvShowsLoaded(tvShows: ArrayList<TvShowResponse.TvShow>?) {
                 val tvShowList = ArrayList<TvShowEntity>()
-                if(tvShows != null){
-                    for (response in tvShows){
-                        with(response){
+                if (tvShows != null) {
+                    for (response in tvShows) {
+                        with(response) {
                             val poster = poster_path ?: ""
                             val tvShow = TvShowEntity(id, name, overview, poster)
                             tvShowList.add(tvShow)
@@ -60,19 +61,19 @@ class MovieCatalogueRepository private constructor(private val remoteDataSource:
                 }
             }
         })
-        return  tvShowResult
+        return tvShowResult
     }
 
     override fun getDetailMovie(movieId: Int): LiveData<DetailEntity> {
         val movieResult = MutableLiveData<DetailEntity>()
 
-        remoteDataSource.getDetailMovie(object: RemoteDataSource.LoadDetailMovieCallback {
+        remoteDataSource.getDetailMovie(object : RemoteDataSource.LoadDetailMovieCallback {
             override fun onDetailMovieLoaded(movieDetail: MovieDetailResponse?) {
-                if (movieDetail != null){
-                    with(movieDetail){
+                if (movieDetail != null) {
+                    with(movieDetail) {
                         val listGenres = ArrayList<DetailEntity.Genre>()
 
-                        for (genre in genres){
+                        for (genre in genres) {
                             listGenres.add(DetailEntity.Genre(genre.id, genre.name))
                         }
 
@@ -97,9 +98,9 @@ class MovieCatalogueRepository private constructor(private val remoteDataSource:
     override fun getDetailTvShow(tvShowId: Int): LiveData<DetailEntity> {
         val tvShowResult = MutableLiveData<DetailEntity>()
 
-        remoteDataSource.getDetailTvShow(object: RemoteDataSource.LoadDetailTvShowCallback {
+        remoteDataSource.getDetailTvShow(object : RemoteDataSource.LoadDetailTvShowCallback {
             override fun onDetailTvShowLoaded(tvShowDetail: TvShowDetailResponse?) {
-                if(tvShowDetail != null){
+                if (tvShowDetail != null) {
                     with(tvShowDetail) {
                         val listGenres = ArrayList<DetailEntity.Genre>()
 

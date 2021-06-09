@@ -14,14 +14,15 @@ class MovieAdapter : RecyclerView.Adapter<MovieAdapter.ViewHolder>() {
 
     private val listMovies = ArrayList<MovieEntity>()
 
-    fun setMovies(movies: ArrayList<MovieEntity>?){
+    fun setMovies(movies: ArrayList<MovieEntity>?) {
         if (movies == null) return
         this.listMovies.clear()
         this.listMovies.addAll(movies)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val itemsMovieBinding = ItemsMovieBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        val itemsMovieBinding =
+            ItemsMovieBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return ViewHolder(itemsMovieBinding)
     }
 
@@ -32,9 +33,10 @@ class MovieAdapter : RecyclerView.Adapter<MovieAdapter.ViewHolder>() {
         holder.bind(movie)
     }
 
-    class ViewHolder(private val binding: ItemsMovieBinding): RecyclerView.ViewHolder(binding.root){
-        fun bind(mMovie: MovieEntity){
-            with(binding){
+    class ViewHolder(private val binding: ItemsMovieBinding) :
+        RecyclerView.ViewHolder(binding.root) {
+        fun bind(mMovie: MovieEntity) {
+            with(binding) {
                 movie = mMovie
                 Glide.with(itemView)
                     .load(BuildConfig.IMAGE_URL + mMovie.posterPath)

@@ -1,7 +1,6 @@
 package io.github.fuadreza.moviecatalogue.ui.detail.tv_shows
 
 import android.content.Intent
-import android.net.Uri
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
@@ -42,8 +41,8 @@ class DetailTvShowActivity : AppCompatActivity() {
         if (extras != null) {
             val tvShowId = extras.getInt(EXTRA_TV_SHOW)
             if (tvShowId != null) {
-                viewModel.getDetailTvShow(tvShowId)
-                viewModel.dataDetailTvShow().observe(this, { detailTvShow ->
+                viewModel.setTvShowId(tvShowId)
+                viewModel.getDetailTvShow().observe(this, { detailTvShow ->
                     binding.tvShow = detailTvShow
                     Glide.with(this)
                         .load(BuildConfig.IMAGE_URL + detailTvShow.posterPath)
