@@ -21,7 +21,7 @@
                 android:layout_height="?attr/actionBarSize"
                 android:elevation="0dp"
                 app:menu="@menu/toolbar_menu"
-                app:title="@string/home" />
+                app:title="@string/favorite" />
 
         </com.google.android.material.appbar.AppBarLayout>
 

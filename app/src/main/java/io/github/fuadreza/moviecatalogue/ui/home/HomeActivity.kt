@@ -15,8 +15,6 @@ class HomeActivity : AppCompatActivity() {
         binding = ActivityHomeBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        setSupportActionBar(binding.toolbar)
-
         val sectionPagerAdapter = HomeSectionPagerAdapter(this, supportFragmentManager)
         binding.viewPager.adapter = sectionPagerAdapter
         binding.tabs.setupWithViewPager(binding.viewPager)
