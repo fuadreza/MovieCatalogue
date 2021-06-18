@@ -21,8 +21,7 @@
         <activity
             android:name=".ui.detail.movies.DetailMovieActivity"
             android:label="@string/title_activity_detail_movie"
-            android:parentActivityName=".ui.home.HomeActivity"
-            android:theme="@style/Theme.MovieCatalogue.NoActionBar">
+            android:parentActivityName=".ui.home.HomeActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".ui.home.HomeActivity" />
@@ -30,8 +29,15 @@
         <activity
             android:name=".ui.detail.tv_shows.DetailTvShowActivity"
             android:label="@string/title_activity_detail_tv_show"
-            android:parentActivityName=".ui.home.HomeActivity"
-            android:theme="@style/Theme.MovieCatalogue.NoActionBar">
+            android:parentActivityName=".ui.home.HomeActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".ui.home.HomeActivity" />
+        </activity>
+        <activity
+            android:name=".ui.favorite.FavoriteActivity"
+            android:label="@string/favorite"
+            android:parentActivityName=".ui.home.HomeActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".ui.home.HomeActivity" />
