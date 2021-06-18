@@ -2,6 +2,7 @@ package io.github.fuadreza.moviecatalogue.ui.home
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import io.github.fuadreza.moviecatalogue.R
 import io.github.fuadreza.moviecatalogue.databinding.ActivityHomeBinding
 
 class HomeActivity : AppCompatActivity() {
@@ -13,6 +14,8 @@ class HomeActivity : AppCompatActivity() {
 
         binding = ActivityHomeBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        setSupportActionBar(binding.toolbar)
 
         val sectionPagerAdapter = HomeSectionPagerAdapter(this, supportFragmentManager)
         binding.viewPager.adapter = sectionPagerAdapter

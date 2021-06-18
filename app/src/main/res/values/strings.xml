@@ -13,4 +13,6 @@
     <string name="overview">Overview</string>
     <string name="content_image">content_image</string>
     <string name="share">Share</string>
+    <string name="content_description_favorite">favorite</string>
+    <string name="favorite">Favorite</string>
 </resources>
