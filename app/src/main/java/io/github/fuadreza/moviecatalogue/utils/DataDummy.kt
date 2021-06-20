@@ -1,7 +1,7 @@
 package io.github.fuadreza.moviecatalogue.utils
 
-import io.github.fuadreza.moviecatalogue.data.DetailEntity
-import io.github.fuadreza.moviecatalogue.data.MovieEntity
+import io.github.fuadreza.moviecatalogue.data.source.local.entity.DetailEntity
+import io.github.fuadreza.moviecatalogue.data.source.local.entity.MovieEntity
 import io.github.fuadreza.moviecatalogue.data.source.remote.response.MovieDetailResponse
 import io.github.fuadreza.moviecatalogue.data.source.remote.response.MoviesResponse
 import io.github.fuadreza.moviecatalogue.data.source.remote.response.TvShowDetailResponse

@@ -4,13 +4,11 @@ import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.get
 import androidx.lifecycle.ViewModelProvider
 import com.bumptech.glide.Glide
 import io.github.fuadreza.moviecatalogue.BuildConfig
 import io.github.fuadreza.moviecatalogue.R
 import io.github.fuadreza.moviecatalogue.databinding.ActivityDetailMovieBinding
-import io.github.fuadreza.moviecatalogue.ui.favorite.FavoriteActivity
 import io.github.fuadreza.moviecatalogue.viewmodel.ViewModelFactory
 
 

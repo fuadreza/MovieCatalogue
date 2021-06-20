@@ -2,7 +2,7 @@ package io.github.fuadreza.moviecatalogue.ui.detail.tv_shows
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
-import io.github.fuadreza.moviecatalogue.data.DetailEntity
+import io.github.fuadreza.moviecatalogue.data.source.local.entity.DetailEntity
 import io.github.fuadreza.moviecatalogue.data.source.MovieCatalogueRepository
 
 class DetailTvShowViewModel(private val movieCatalogueRepository: MovieCatalogueRepository) :

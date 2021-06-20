@@ -3,6 +3,9 @@ package io.github.fuadreza.moviecatalogue.data
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import io.github.fuadreza.moviecatalogue.data.source.MovieCatalogueDataSource
+import io.github.fuadreza.moviecatalogue.data.source.local.entity.DetailEntity
+import io.github.fuadreza.moviecatalogue.data.source.local.entity.MovieEntity
+import io.github.fuadreza.moviecatalogue.data.source.local.entity.TvShowEntity
 import io.github.fuadreza.moviecatalogue.data.source.remote.RemoteDataSource
 import io.github.fuadreza.moviecatalogue.data.source.remote.response.MovieDetailResponse
 import io.github.fuadreza.moviecatalogue.data.source.remote.response.MoviesResponse

@@ -1,14 +1,10 @@
 package io.github.fuadreza.moviecatalogue.ui.tv_shows
 
-import android.content.Intent
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.bumptech.glide.Glide
-import io.github.fuadreza.moviecatalogue.BuildConfig
-import io.github.fuadreza.moviecatalogue.data.TvShowEntity
+import io.github.fuadreza.moviecatalogue.data.source.local.entity.TvShowEntity
 import io.github.fuadreza.moviecatalogue.databinding.ItemsTvShowBinding
-import io.github.fuadreza.moviecatalogue.ui.detail.tv_shows.DetailTvShowActivity
 
 class TvShowAdapter : RecyclerView.Adapter<TvShowAdapter.ViewHolder>() {
 

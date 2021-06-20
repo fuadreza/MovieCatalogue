@@ -1,14 +1,10 @@
 package io.github.fuadreza.moviecatalogue.ui.movies
 
-import android.content.Intent
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.bumptech.glide.Glide
-import io.github.fuadreza.moviecatalogue.BuildConfig
-import io.github.fuadreza.moviecatalogue.data.MovieEntity
+import io.github.fuadreza.moviecatalogue.data.source.local.entity.MovieEntity
 import io.github.fuadreza.moviecatalogue.databinding.ItemsMovieBinding
-import io.github.fuadreza.moviecatalogue.ui.detail.movies.DetailMovieActivity
 
 class MovieAdapter : RecyclerView.Adapter<MovieAdapter.ViewHolder>() {
 

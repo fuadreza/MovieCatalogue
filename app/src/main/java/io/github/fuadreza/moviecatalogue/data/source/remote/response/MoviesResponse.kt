@@ -4,18 +4,37 @@ import com.google.gson.annotations.SerializedName
 
 class MoviesResponse (
     @SerializedName("page")
-    var page: Int? = null,
+    var page: Int,
     @SerializedName("results")
-    var results: ArrayList<Movie>? = null
+    var results: ArrayList<Movie>? = null,
+    @SerializedName("total_pages")
+    val totalPages: Int,
+    @SerializedName("total_results")
+    val totalResults: Int
 ){
     class Movie(
         @SerializedName("id")
-        var id: Int = 0,
+        var id: Int,
         @SerializedName("title")
-        var title: String = "",
+        var title: String,
+        @SerializedName("genres")
+        var genres: ArrayList<Genre>,
+        @SerializedName("release_date")
+        var releaseDate: String? = null,
+        @SerializedName("tagline")
+        var tagline: String? = null,
         @SerializedName("overview")
-        var overview: String = "",
+        var overview: String? = null,
+        @SerializedName("popularity")
+        var popularity: Double,
         @SerializedName("poster_path")
-        var poster_path: String? = null
-    )
+        var posterPath: String? = null
+    ){
+        class Genre(
+            @SerializedName("id")
+            var id: Int,
+            @SerializedName("name")
+            var name: String
+        )
+    }
 }

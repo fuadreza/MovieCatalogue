@@ -6,7 +6,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Observer
 import com.nhaarman.mockitokotlin2.verify
 
-import io.github.fuadreza.moviecatalogue.data.DetailEntity
+import io.github.fuadreza.moviecatalogue.data.source.local.entity.DetailEntity
 import io.github.fuadreza.moviecatalogue.data.source.MovieCatalogueRepository
 import io.github.fuadreza.moviecatalogue.utils.DataDummy
 

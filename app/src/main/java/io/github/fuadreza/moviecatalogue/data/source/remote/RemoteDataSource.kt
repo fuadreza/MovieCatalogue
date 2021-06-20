@@ -1,8 +1,11 @@
 package io.github.fuadreza.moviecatalogue.data.source.remote
 
 import android.util.Log
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import io.github.fuadreza.moviecatalogue.BuildConfig
 import io.github.fuadreza.moviecatalogue.data.source.remote.api.ApiClient
+import io.github.fuadreza.moviecatalogue.data.source.remote.api.ApiResponse
 import io.github.fuadreza.moviecatalogue.data.source.remote.response.MovieDetailResponse
 import io.github.fuadreza.moviecatalogue.data.source.remote.response.MoviesResponse
 import io.github.fuadreza.moviecatalogue.data.source.remote.response.TvShowDetailResponse
@@ -23,15 +26,17 @@ class RemoteDataSource {
             }
     }
 
-    fun getMovies(callback: LoadMoviesCallback) {
+    fun getMovies(): LiveData<ApiResponse<List<MoviesResponse.Movie>>> {
         EspressoIdlingResource.increment()
+        val resultMovies = MutableLiveData<ApiResponse<List<MoviesResponse.Movie>>>()
         val client = ApiClient.getApiService().getMovies(BuildConfig.API_KEY)
+
         client.enqueue(object : Callback<MoviesResponse> {
             override fun onResponse(
                 call: Call<MoviesResponse>,
                 response: Response<MoviesResponse>
             ) {
-                callback.onMoviesLoaded(response.body()?.results)
+                resultMovies.value = ApiResponse.success(response.body()?.results as List<MoviesResponse.Movie>)
                 EspressoIdlingResource.decrement()
             }
 
@@ -40,17 +45,21 @@ class RemoteDataSource {
                 EspressoIdlingResource.decrement()
             }
         })
+
+        return resultMovies
     }
 
-    fun getDetailMovie(callback: LoadDetailMovieCallback, movieId: Int) {
+    fun getDetailMovie(movieId: Int): LiveData<ApiResponse<MovieDetailResponse>> {
         EspressoIdlingResource.increment()
+        val resultDetailMovie = MutableLiveData<ApiResponse<MovieDetailResponse>>()
         val client = ApiClient.getApiService().getMovieDetail(movieId, BuildConfig.API_KEY)
+
         client.enqueue(object : Callback<MovieDetailResponse> {
             override fun onResponse(
                 call: Call<MovieDetailResponse>,
                 response: Response<MovieDetailResponse>
             ) {
-                callback.onDetailMovieLoaded(response.body())
+                resultDetailMovie.value = ApiResponse.success(response.body() as MovieDetailResponse)
                 EspressoIdlingResource.decrement()
             }
 
@@ -59,17 +68,21 @@ class RemoteDataSource {
                 EspressoIdlingResource.decrement()
             }
         })
+
+        return resultDetailMovie
     }
 
-    fun getTvShows(callback: LoadTvShowsCallback) {
+    fun getTvShows(): LiveData<ApiResponse<List<TvShowResponse.TvShow>>> {
         EspressoIdlingResource.increment()
+        val resultTvShows = MutableLiveData<ApiResponse<List<TvShowResponse.TvShow>>>()
         val client = ApiClient.getApiService().getTvShows(BuildConfig.API_KEY)
+
         client.enqueue(object : Callback<TvShowResponse> {
             override fun onResponse(
                 call: Call<TvShowResponse>,
                 response: Response<TvShowResponse>
             ) {
-                callback.onTvShowsLoaded(response.body()?.results)
+                resultTvShows.value = ApiResponse.success(response.body()?.results as List<TvShowResponse.TvShow>)
                 EspressoIdlingResource.decrement()
             }
 
@@ -78,17 +91,21 @@ class RemoteDataSource {
                 EspressoIdlingResource.decrement()
             }
         })
+
+        return resultTvShows
     }
 
-    fun getDetailTvShow(callback: LoadDetailTvShowCallback, tvShowId: Int) {
+    fun getDetailTvShow(tvShowId: Int): LiveData<ApiResponse<TvShowDetailResponse>> {
         EspressoIdlingResource.increment()
+        val resultDetailTvShow = MutableLiveData<ApiResponse<TvShowDetailResponse>>()
         val client = ApiClient.getApiService().getTvShowDetail(tvShowId, BuildConfig.API_KEY)
+
         client.enqueue(object : Callback<TvShowDetailResponse> {
             override fun onResponse(
                 call: Call<TvShowDetailResponse>,
                 response: Response<TvShowDetailResponse>
             ) {
-                callback.onDetailTvShowLoaded(response.body())
+                resultDetailTvShow.value = ApiResponse.success(response.body() as TvShowDetailResponse)
                 EspressoIdlingResource.decrement()
             }
 
@@ -97,21 +114,8 @@ class RemoteDataSource {
                 EspressoIdlingResource.decrement()
             }
         })
+
+        return resultDetailTvShow
     }
 
-    interface LoadMoviesCallback {
-        fun onMoviesLoaded(movies: ArrayList<MoviesResponse.Movie>?)
-    }
-
-    interface LoadDetailMovieCallback {
-        fun onDetailMovieLoaded(movieDetail: MovieDetailResponse?)
-    }
-
-    interface LoadTvShowsCallback {
-        fun onTvShowsLoaded(tvShows: ArrayList<TvShowResponse.TvShow>?)
-    }
-
-    interface LoadDetailTvShowCallback {
-        fun onDetailTvShowLoaded(tvShowDetail: TvShowDetailResponse?)
-    }
 }

@@ -7,7 +7,7 @@
 
         <variable
             name="tvShow"
-            type="io.github.fuadreza.moviecatalogue.data.DetailEntity" />
+            type="io.github.fuadreza.moviecatalogue.data.source.local.entity.DetailEntity" />
     </data>
 
     <androidx.coordinatorlayout.widget.CoordinatorLayout

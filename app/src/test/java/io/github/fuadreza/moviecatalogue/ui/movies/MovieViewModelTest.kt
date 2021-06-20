@@ -4,7 +4,7 @@ import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Observer
 import com.nhaarman.mockitokotlin2.verify
-import io.github.fuadreza.moviecatalogue.data.MovieEntity
+import io.github.fuadreza.moviecatalogue.data.source.local.entity.MovieEntity
 import io.github.fuadreza.moviecatalogue.data.source.MovieCatalogueRepository
 import io.github.fuadreza.moviecatalogue.utils.DataDummy
 import org.junit.Assert.assertEquals

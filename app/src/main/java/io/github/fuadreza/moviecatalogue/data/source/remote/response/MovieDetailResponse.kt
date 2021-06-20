@@ -10,7 +10,7 @@ class MovieDetailResponse(
     @SerializedName("genres")
     var genres: ArrayList<Genre>,
     @SerializedName("release_date")
-    var releaseYear: String? = null,
+    var releaseDate: String? = null,
     @SerializedName("tagline")
     var tagline: String? = null,
     @SerializedName("overview")

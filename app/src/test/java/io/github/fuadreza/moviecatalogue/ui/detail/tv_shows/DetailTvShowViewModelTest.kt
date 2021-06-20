@@ -3,7 +3,7 @@ package io.github.fuadreza.moviecatalogue.ui.detail.tv_shows
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Observer
-import io.github.fuadreza.moviecatalogue.data.DetailEntity
+import io.github.fuadreza.moviecatalogue.data.source.local.entity.DetailEntity
 import io.github.fuadreza.moviecatalogue.data.source.MovieCatalogueRepository
 import io.github.fuadreza.moviecatalogue.utils.DataDummy
 import org.junit.Assert.assertEquals

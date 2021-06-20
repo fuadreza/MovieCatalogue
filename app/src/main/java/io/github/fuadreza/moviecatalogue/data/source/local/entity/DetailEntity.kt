@@ -1,4 +1,4 @@
-package io.github.fuadreza.moviecatalogue.data
+package io.github.fuadreza.moviecatalogue.data.source.local.entity
 
 class DetailEntity (
     var id: Int,

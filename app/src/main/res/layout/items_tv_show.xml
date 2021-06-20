@@ -7,7 +7,7 @@
 
         <variable
             name="tvShow"
-            type="io.github.fuadreza.moviecatalogue.data.TvShowEntity" />
+            type="io.github.fuadreza.moviecatalogue.data.source.local.entity.TvShowEntity" />
     </data>
 
     <androidx.cardview.widget.CardView
@@ -36,7 +36,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="8dp"
                 android:layout_marginTop="8dp"
-                android:text="@{tvShow.title}"
+                android:text="@{tvShow.name}"
                 android:textSize="21sp"
                 android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="parent"

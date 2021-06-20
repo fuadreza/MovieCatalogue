@@ -7,7 +7,7 @@
 
         <variable
             name="movie"
-            type="io.github.fuadreza.moviecatalogue.data.MovieEntity" />
+            type="io.github.fuadreza.moviecatalogue.data.source.local.entity.MovieEntity" />
     </data>
 
     <androidx.cardview.widget.CardView
