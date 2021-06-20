@@ -2,14 +2,15 @@ package io.github.fuadreza.moviecatalogue.ui.detail.movies
 
 import android.content.Intent
 import android.os.Bundle
-import android.view.Menu
-import android.view.MenuItem
+import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.get
 import androidx.lifecycle.ViewModelProvider
 import com.bumptech.glide.Glide
 import io.github.fuadreza.moviecatalogue.BuildConfig
 import io.github.fuadreza.moviecatalogue.R
 import io.github.fuadreza.moviecatalogue.databinding.ActivityDetailMovieBinding
+import io.github.fuadreza.moviecatalogue.ui.favorite.FavoriteActivity
 import io.github.fuadreza.moviecatalogue.viewmodel.ViewModelFactory
 
 
@@ -26,9 +27,6 @@ class DetailMovieActivity : AppCompatActivity() {
 
         binding = ActivityDetailMovieBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
-        setSupportActionBar(binding.toolbar)
-        supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
         val factory = ViewModelFactory.getInstance(this)
 
@@ -59,22 +57,27 @@ class DetailMovieActivity : AppCompatActivity() {
                 })
             }
         }
+
+        binding.toolbar.setOnMenuItemClickListener { menuItem ->
+            when (menuItem.itemId) {
+                R.id.favorite -> {
+                    favorite()
+                    true
+                }
+                R.id.action_share -> {
+                    share()
+                    true
+                }
+                else -> false
+            }
+        }
+        binding.toolbar.setNavigationOnClickListener {
+            finish()
+        }
     }
 
-    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        menuInflater.inflate(R.menu.menu_detail, menu)
-        return true
-    }
-
-    override fun onOptionsItemSelected(item: MenuItem) = when (item.itemId) {
-        R.id.action_share -> {
-            share()
-            true
-        }
-        else -> {
-            super.onOptionsItemSelected(item)
-        }
+    private fun favorite() {
+        binding.toolbar.menu.findItem(R.id.favorite).setIcon(R.drawable.ic_baseline_favorite_24)
     }
 
     private fun share() {
@@ -87,6 +90,7 @@ class DetailMovieActivity : AppCompatActivity() {
             startActivity(Intent.createChooser(shareIntent, "Choose one"))
         } catch (e: Exception) {
             e.printStackTrace()
+            Log.e("SHARE", "SHARE MOVIE")
         }
     }
 

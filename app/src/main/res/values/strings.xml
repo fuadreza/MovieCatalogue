@@ -17,5 +17,6 @@
     <string name="content_image">content_image</string>
     <string name="share">Share</string>
     <string name="content_description_favorite">favorite</string>
+    <string name="content_description_share">share</string>
 
 </resources>
