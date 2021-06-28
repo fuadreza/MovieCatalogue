@@ -132,7 +132,7 @@ class MovieCatalogueRepository private constructor(
                     val movie = TvShowEntity(
                         id = response.id,
                         overview = response.overview,
-                        tagline = response.tagline,
+                        tagline = response.tagline ?: "",
                         posterPath = response.posterPath ?: "",
                         firstAirDate = response.firstAirDate,
                         name = response.name,

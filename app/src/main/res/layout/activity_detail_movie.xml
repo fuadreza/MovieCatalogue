@@ -7,7 +7,7 @@
 
         <variable
             name="movie"
-            type="io.github.fuadreza.moviecatalogue.data.source.local.entity.DetailEntity" />
+            type="io.github.fuadreza.moviecatalogue.data.source.local.entity.MovieEntity" />
     </data>
 
     <androidx.coordinatorlayout.widget.CoordinatorLayout
@@ -95,7 +95,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="8dp"
-                    android:text="@{movie.releaseYear}"
+                    android:text="@{movie.releaseDate}"
                     android:textSize="16sp"
                     app:layout_constraintBottom_toTopOf="@id/tvTagline"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -183,7 +183,7 @@
                                 android:id="@+id/tvScore"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:text="@{movie.popularity}"
+                                android:text="@{Double.toString(movie.popularity)}"
                                 android:textAlignment="center"
                                 android:textSize="24sp"
                                 tools:text="16" />

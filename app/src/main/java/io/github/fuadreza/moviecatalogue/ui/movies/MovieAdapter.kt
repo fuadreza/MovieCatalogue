@@ -59,7 +59,7 @@ class MovieAdapter : PagedListAdapter<MovieEntity, MovieAdapter.ViewHolder>(DIFF
 //                    itemView.context.startActivity(intent)
 //                }
 
-                itemView.setOnClickListener { onItemClickCallback.onItemClicked(movie.id) }
+//                binding.root.setOnClickListener { onItemClickCallback.onItemClicked(movie.id) }
             }
         }
     }

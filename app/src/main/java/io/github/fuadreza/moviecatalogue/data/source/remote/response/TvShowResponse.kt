@@ -22,7 +22,7 @@ class TvShowResponse (
         @SerializedName("genres")
         var genres: ArrayList<Genre>,
         @SerializedName("tagline")
-        var tagline: String,
+        var tagline: String? = null,
         @SerializedName("overview")
         var overview: String,
         @SerializedName("popularity")

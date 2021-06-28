@@ -3,11 +3,16 @@ package io.github.fuadreza.moviecatalogue.ui.detail.movies
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.bumptech.glide.Glide
 import io.github.fuadreza.moviecatalogue.BuildConfig
 import io.github.fuadreza.moviecatalogue.R
+import io.github.fuadreza.moviecatalogue.data.source.local.entity.MovieEntity
+import io.github.fuadreza.moviecatalogue.data.vo.Resource
+import io.github.fuadreza.moviecatalogue.data.vo.Status
 import io.github.fuadreza.moviecatalogue.databinding.ActivityDetailMovieBinding
 import io.github.fuadreza.moviecatalogue.viewmodel.ViewModelFactory
 
@@ -19,6 +24,7 @@ class DetailMovieActivity : AppCompatActivity() {
     }
 
     private lateinit var binding: ActivityDetailMovieBinding
+    private lateinit var viewModel: DetailMovieViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -28,31 +34,14 @@ class DetailMovieActivity : AppCompatActivity() {
 
         val factory = ViewModelFactory.getInstance(this)
 
-        val viewModel = ViewModelProvider(
-            this,
-            factory
-        )[DetailMovieViewModel::class.java]
+        viewModel = ViewModelProvider(this, factory)[DetailMovieViewModel::class.java]
 
         val extras = intent.extras
         if (extras != null) {
             val movieId = extras.getInt(EXTRA_MOVIE)
             if (movieId != null) {
                 viewModel.setMovieId(movieId)
-                viewModel.getDetailMovie().observe(this, { detailMovie ->
-                    binding.movie = detailMovie
-                    Glide.with(this)
-                        .load(BuildConfig.IMAGE_URL + detailMovie.posterPath)
-                        .into(binding.ivPoster)
-
-                    var genres = ""
-                    detailMovie.genres.forEachIndexed { index, genre ->
-                        genres += if (index < detailMovie.genres.size)
-                            "${genre.name},"
-                        else
-                            genre.name
-                    }
-                    binding.tvGenre.text = genres
-                })
+                viewModel.getDetailMovie().observe(this, movieObserver)
             }
         }
 
@@ -71,6 +60,40 @@ class DetailMovieActivity : AppCompatActivity() {
         }
         binding.toolbar.setNavigationOnClickListener {
             finish()
+        }
+    }
+
+    private fun populateDataMovie(detailMovie: MovieEntity) {
+        binding.movie = detailMovie
+        Glide.with(this)
+            .load(BuildConfig.IMAGE_URL + detailMovie.posterPath)
+            .into(binding.ivPoster)
+
+//        var genres = ""
+//        detailMovie.genres.forEachIndexed { index, genre ->
+//            genres += if (index < detailMovie.genres.size)
+//                "${genre.name},"
+//            else
+//                genre.name
+//        }
+//        binding.tvGenre.text = genres
+    }
+
+    private val movieObserver = Observer<Resource<MovieEntity>> { detailMovie ->
+        if (detailMovie != null) {
+            when (detailMovie.status) {
+                Status.LOADING -> {
+                    Toast.makeText(this, "Sedang memuat", Toast.LENGTH_SHORT).show()
+                }
+                Status.SUCCESS -> {
+                    if (detailMovie.data != null) {
+                        populateDataMovie(detailMovie.data)
+                    }
+                }
+                Status.ERROR -> {
+                    Toast.makeText(this, "Terjadi kesalahan", Toast.LENGTH_SHORT).show()
+                }
+            }
         }
     }
 
