@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.isVisible
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.bumptech.glide.Glide
@@ -83,14 +84,16 @@ class DetailMovieActivity : AppCompatActivity() {
         if (detailMovie != null) {
             when (detailMovie.status) {
                 Status.LOADING -> {
-                    Toast.makeText(this, "Sedang memuat", Toast.LENGTH_SHORT).show()
+                    showProgress(true)
                 }
                 Status.SUCCESS -> {
+                    showProgress(false)
                     if (detailMovie.data != null) {
                         populateDataMovie(detailMovie.data)
                     }
                 }
                 Status.ERROR -> {
+                    showProgress(false)
                     Toast.makeText(this, "Terjadi kesalahan", Toast.LENGTH_SHORT).show()
                 }
             }
@@ -115,4 +118,7 @@ class DetailMovieActivity : AppCompatActivity() {
         }
     }
 
+    private fun showProgress(state: Boolean){
+        binding.progressBar.isVisible = state
+    }
 }

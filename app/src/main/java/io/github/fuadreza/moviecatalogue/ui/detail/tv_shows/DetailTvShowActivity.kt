@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.isVisible
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.bumptech.glide.Glide
@@ -35,7 +36,7 @@ class DetailTvShowActivity : AppCompatActivity() {
 
         val factory = ViewModelFactory.getInstance(this)
 
-        val viewModel = ViewModelProvider(this, factory)[DetailTvShowViewModel::class.java]
+        viewModel = ViewModelProvider(this, factory)[DetailTvShowViewModel::class.java]
 
         val extras = intent.extras
         if (extras != null) {
@@ -85,14 +86,16 @@ class DetailTvShowActivity : AppCompatActivity() {
         if (detailTvShow != null) {
             when (detailTvShow.status) {
                 Status.LOADING -> {
-                    Toast.makeText(this, "Sedang memuat", Toast.LENGTH_SHORT).show()
+                    showProgress(true)
                 }
                 Status.SUCCESS -> {
+                    showProgress(false)
                     if (detailTvShow.data != null) {
                         populateDataTvShow(detailTvShow.data)
                     }
                 }
                 Status.ERROR -> {
+                    showProgress(false)
                     Toast.makeText(this, "Terjadi kesalahan", Toast.LENGTH_SHORT).show()
                 }
             }
@@ -116,4 +119,7 @@ class DetailTvShowActivity : AppCompatActivity() {
         }
     }
 
+    private fun showProgress(state: Boolean){
+        binding.progressBar.isVisible = state
+    }
 }

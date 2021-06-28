@@ -1,6 +1,5 @@
 package io.github.fuadreza.moviecatalogue.ui.movies
 
-import android.content.Intent
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.paging.PagedListAdapter
@@ -10,7 +9,6 @@ import com.bumptech.glide.Glide
 import io.github.fuadreza.moviecatalogue.BuildConfig
 import io.github.fuadreza.moviecatalogue.data.source.local.entity.MovieEntity
 import io.github.fuadreza.moviecatalogue.databinding.ItemsMovieBinding
-import io.github.fuadreza.moviecatalogue.ui.detail.movies.DetailMovieActivity
 
 class MovieAdapter : PagedListAdapter<MovieEntity, MovieAdapter.ViewHolder>(DIFF_CALLBACK) {
 
@@ -59,8 +57,9 @@ class MovieAdapter : PagedListAdapter<MovieEntity, MovieAdapter.ViewHolder>(DIFF
 //                    itemView.context.startActivity(intent)
 //                }
 
-//                binding.root.setOnClickListener { onItemClickCallback.onItemClicked(movie.id) }
+                itemView.setOnClickListener { onItemClickCallback.onItemClicked(mMovie.id) }
             }
+
         }
     }
 

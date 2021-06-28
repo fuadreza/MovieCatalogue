@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -57,14 +58,16 @@ class TvShowFragment : Fragment(), TvShowAdapter.OnItemClickCallback {
         if (tvShows != null) {
             when (tvShows.status) {
                 Status.LOADING -> {
-                    Toast.makeText(context, "Sedang memuat", Toast.LENGTH_SHORT).show()
+                    showProgress(true)
                 }
                 Status.SUCCESS -> {
+                    showProgress(false)
                     tvShowAdapter.submitList(tvShows.data)
                     tvShowAdapter.setOnItemClickCallback(this)
                     tvShowAdapter.notifyDataSetChanged()
                 }
                 Status.ERROR -> {
+                    showProgress(false)
                     Toast.makeText(context, "Terjadi kesalahan", Toast.LENGTH_SHORT).show()
                 }
             }
@@ -76,5 +79,10 @@ class TvShowFragment : Fragment(), TvShowAdapter.OnItemClickCallback {
         intent.putExtra(DetailTvShowActivity.EXTRA_TV_SHOW, id)
 
         context?.startActivity(intent)
+    }
+
+    private fun showProgress(state: Boolean){
+        binding.progressBar.isVisible = state
+        binding.rvTvShow.isVisible = !state
     }
 }
