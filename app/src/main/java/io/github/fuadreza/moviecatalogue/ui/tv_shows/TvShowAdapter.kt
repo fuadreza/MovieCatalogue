@@ -2,18 +2,32 @@ package io.github.fuadreza.moviecatalogue.ui.tv_shows
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.paging.PagedListAdapter
+import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
+import io.github.fuadreza.moviecatalogue.BuildConfig
 import io.github.fuadreza.moviecatalogue.data.source.local.entity.TvShowEntity
 import io.github.fuadreza.moviecatalogue.databinding.ItemsTvShowBinding
 
-class TvShowAdapter : RecyclerView.Adapter<TvShowAdapter.ViewHolder>() {
+class TvShowAdapter : PagedListAdapter<TvShowEntity, TvShowAdapter.ViewHolder>(DIFF_CALLBACK) {
 
-    private val listTvShows = ArrayList<TvShowEntity>()
+    companion object {
+        private val DIFF_CALLBACK = object : DiffUtil.ItemCallback<TvShowEntity>() {
+            override fun areItemsTheSame(oldItem: TvShowEntity, newItem: TvShowEntity): Boolean {
+                return oldItem.id == newItem.id
+            }
 
-    fun setTvShows(tvShows: ArrayList<TvShowEntity>?) {
-        if (tvShows == null) return
-        this.listTvShows.clear()
-        this.listTvShows.addAll(tvShows)
+            override fun areContentsTheSame(oldItem: TvShowEntity, newItem: TvShowEntity): Boolean {
+                return oldItem == newItem
+            }
+        }
+    }
+
+    private lateinit var onItemClickCallback: OnItemClickCallback
+
+    fun setOnItemClickCallback(onItemClickCallback: OnItemClickCallback) {
+        this.onItemClickCallback = onItemClickCallback
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -22,14 +36,14 @@ class TvShowAdapter : RecyclerView.Adapter<TvShowAdapter.ViewHolder>() {
         return ViewHolder(itemsTvShowBinding)
     }
 
-    override fun getItemCount(): Int = listTvShows.size
-
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val tvShow = listTvShows[position]
-        holder.bind(tvShow)
+        val tvShow = getItem(position)
+        if (tvShow != null) {
+            holder.bind(tvShow)
+        }
     }
 
-    class ViewHolder(private val binding: ItemsTvShowBinding) :
+    inner class ViewHolder(private val binding: ItemsTvShowBinding) :
         RecyclerView.ViewHolder(binding.root) {
         fun bind(mTvShow: TvShowEntity) {
             with(binding) {
@@ -37,13 +51,18 @@ class TvShowAdapter : RecyclerView.Adapter<TvShowAdapter.ViewHolder>() {
                 Glide.with(itemView)
                     .load(BuildConfig.IMAGE_URL + mTvShow.posterPath)
                     .into(ivPoster)
-                itemView.setOnClickListener {
-                    val intent = Intent(itemView.context, DetailTvShowActivity::class.java)
-                    intent.putExtra(DetailTvShowActivity.EXTRA_TV_SHOW, mTvShow.id)
-                    itemView.context.startActivity(intent)
-                }
+//                itemView.setOnClickListener {
+//                    val intent = Intent(itemView.context, DetailTvShowActivity::class.java)
+//                    intent.putExtra(DetailTvShowActivity.EXTRA_TV_SHOW, mTvShow.id)
+//                    itemView.context.startActivity(intent)
+//                }
+
+                itemView.setOnClickListener { onItemClickCallback.onItemClicked(mTvShow.id) }
             }
         }
     }
 
+    interface OnItemClickCallback {
+        fun onItemClicked(id: Int)
+    }
 }

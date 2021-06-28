@@ -1,18 +1,28 @@
 package io.github.fuadreza.moviecatalogue.ui.tv_shows
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.paging.PagedList
 import androidx.recyclerview.widget.LinearLayoutManager
+import io.github.fuadreza.moviecatalogue.data.source.local.entity.TvShowEntity
+import io.github.fuadreza.moviecatalogue.data.vo.Resource
+import io.github.fuadreza.moviecatalogue.data.vo.Status
 import io.github.fuadreza.moviecatalogue.databinding.FragmentTvShowBinding
+import io.github.fuadreza.moviecatalogue.ui.detail.tv_shows.DetailTvShowActivity
 import io.github.fuadreza.moviecatalogue.viewmodel.ViewModelFactory
 
-class TvShowFragment : Fragment() {
+class TvShowFragment : Fragment(), TvShowAdapter.OnItemClickCallback {
 
     private lateinit var binding: FragmentTvShowBinding
+    private lateinit var viewModel: TvShowViewModel
+    private lateinit var tvShowAdapter: TvShowAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -29,22 +39,42 @@ class TvShowFragment : Fragment() {
 
             val factory = ViewModelFactory.getInstance(requireActivity())
 
-            val viewModel = ViewModelProvider(
-                this,
-                factory
-            )[TvShowViewModel::class.java]
+            viewModel = ViewModelProvider(this, factory)[TvShowViewModel::class.java]
 
-            viewModel.getTvShows().observe(viewLifecycleOwner, { tvShows ->
-                val tvShowAdapter = TvShowAdapter()
-                tvShowAdapter.setTvShows(tvShows)
-                binding.rvTvShow.apply {
-                    layoutManager = LinearLayoutManager(context)
-                    setHasFixedSize(false)
-                    adapter = tvShowAdapter
-                }
-            })
+            tvShowAdapter = TvShowAdapter()
 
+            viewModel.getTvShows().observe(viewLifecycleOwner, tvShowObserver)
+
+            with(binding.rvTvShow) {
+                layoutManager = LinearLayoutManager(context)
+                setHasFixedSize(false)
+                this.adapter = tvShowAdapter
+            }
         }
     }
 
+    private val tvShowObserver = Observer<Resource<PagedList<TvShowEntity>>> { tvShows ->
+        if (tvShows != null) {
+            when (tvShows.status) {
+                Status.LOADING -> {
+                    Toast.makeText(context, "Sedang memuat", Toast.LENGTH_SHORT).show()
+                }
+                Status.SUCCESS -> {
+                    tvShowAdapter.submitList(tvShows.data)
+                    tvShowAdapter.setOnItemClickCallback(this)
+                    tvShowAdapter.notifyDataSetChanged()
+                }
+                Status.ERROR -> {
+                    Toast.makeText(context, "Terjadi kesalahan", Toast.LENGTH_SHORT).show()
+                }
+            }
+        }
+    }
+
+    override fun onItemClicked(id: Int) {
+        val intent = Intent(context, DetailTvShowActivity::class.java)
+        intent.putExtra(DetailTvShowActivity.EXTRA_TV_SHOW, id)
+
+        context?.startActivity(intent)
+    }
 }
