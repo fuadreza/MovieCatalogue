@@ -31,9 +31,6 @@ class DetailTvShowActivity : AppCompatActivity() {
         binding = ActivityDetailTvShowBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        setSupportActionBar(binding.toolbar)
-        supportActionBar?.setDisplayHomeAsUpEnabled(true)
-
         val factory = ViewModelFactory.getInstance(this)
 
         viewModel = ViewModelProvider(this, factory)[DetailTvShowViewModel::class.java]
@@ -50,7 +47,7 @@ class DetailTvShowActivity : AppCompatActivity() {
         binding.toolbar.setOnMenuItemClickListener { menuItem ->
             when (menuItem.itemId) {
                 R.id.favorite -> {
-                    favorite()
+                    viewModel.setFavoriteTvShow()
                     true
                 }
                 R.id.action_share -> {
@@ -70,16 +67,7 @@ class DetailTvShowActivity : AppCompatActivity() {
         Glide.with(this)
             .load(BuildConfig.IMAGE_URL + detailTvShow.posterPath)
             .into(binding.ivPoster)
-
-//        var genres = ""
-//        detailTvShow.genres.forEachIndexed { index, genre ->
-//            genres += if (index < detailTvShow.genres.size)
-//                "${genre.name},"
-//            else
-//                genre.name
-//        }
-//
-//        binding.tvGenre.text = genres
+        setFav(detailTvShow.isFav)
     }
 
     private val tvShowObserver = Observer<Resource<TvShowEntity>> { detailTvShow ->
@@ -102,8 +90,13 @@ class DetailTvShowActivity : AppCompatActivity() {
         }
     }
 
-    private fun favorite() {
-        binding.toolbar.menu.findItem(R.id.favorite).setIcon(R.drawable.ic_baseline_favorite_24)
+    private fun setFav(isFav: Boolean) {
+        if (isFav) {
+            binding.toolbar.menu.findItem(R.id.favorite).setIcon(R.drawable.ic_baseline_favorite_24)
+        } else {
+            binding.toolbar.menu.findItem(R.id.favorite)
+                .setIcon(R.drawable.ic_baseline_favorite_border_24)
+        }
     }
 
     private fun share() {
@@ -119,7 +112,7 @@ class DetailTvShowActivity : AppCompatActivity() {
         }
     }
 
-    private fun showProgress(state: Boolean){
+    private fun showProgress(state: Boolean) {
         binding.progressBar.isVisible = state
     }
 }

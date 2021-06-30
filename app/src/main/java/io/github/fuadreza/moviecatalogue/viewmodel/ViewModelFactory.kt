@@ -7,6 +7,8 @@ import io.github.fuadreza.moviecatalogue.data.source.MovieCatalogueRepository
 import io.github.fuadreza.moviecatalogue.di.Injection
 import io.github.fuadreza.moviecatalogue.ui.detail.movies.DetailMovieViewModel
 import io.github.fuadreza.moviecatalogue.ui.detail.tv_shows.DetailTvShowViewModel
+import io.github.fuadreza.moviecatalogue.ui.favorite.movies.FavoriteMoviesViewModel
+import io.github.fuadreza.moviecatalogue.ui.favorite.tv_shows.FavoriteTvShowsViewModel
 import io.github.fuadreza.moviecatalogue.ui.movies.MovieViewModel
 import io.github.fuadreza.moviecatalogue.ui.tv_shows.TvShowViewModel
 
@@ -39,6 +41,12 @@ class ViewModelFactory private constructor(private val mMovieCatalogueRepository
             }
             modelClass.isAssignableFrom(DetailTvShowViewModel::class.java) -> {
                 DetailTvShowViewModel(mMovieCatalogueRepository) as T
+            }
+            modelClass.isAssignableFrom(FavoriteMoviesViewModel::class.java) -> {
+                FavoriteMoviesViewModel(mMovieCatalogueRepository) as T
+            }
+            modelClass.isAssignableFrom(FavoriteTvShowsViewModel::class.java) -> {
+                FavoriteTvShowsViewModel(mMovieCatalogueRepository) as T
             }
             else -> throw Throwable("Unknown ViewModel class: " + modelClass.name)
         }

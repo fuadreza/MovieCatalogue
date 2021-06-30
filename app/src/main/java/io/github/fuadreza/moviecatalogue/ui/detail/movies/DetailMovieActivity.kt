@@ -69,15 +69,7 @@ class DetailMovieActivity : AppCompatActivity() {
         Glide.with(this)
             .load(BuildConfig.IMAGE_URL + detailMovie.posterPath)
             .into(binding.ivPoster)
-
-//        var genres = ""
-//        detailMovie.genres.forEachIndexed { index, genre ->
-//            genres += if (index < detailMovie.genres.size)
-//                "${genre.name},"
-//            else
-//                genre.name
-//        }
-//        binding.tvGenre.text = genres
+        setFav(detailMovie.isFav)
     }
 
     private val movieObserver = Observer<Resource<MovieEntity>> { detailMovie ->
@@ -101,7 +93,15 @@ class DetailMovieActivity : AppCompatActivity() {
     }
 
     private fun favorite() {
-        binding.toolbar.menu.findItem(R.id.favorite).setIcon(R.drawable.ic_baseline_favorite_24)
+        viewModel.setFavoriteMovie()
+    }
+
+    private fun setFav(isFav: Boolean) {
+        if(isFav) {
+            binding.toolbar.menu.findItem(R.id.favorite).setIcon(R.drawable.ic_baseline_favorite_24)
+        }else {
+            binding.toolbar.menu.findItem(R.id.favorite).setIcon(R.drawable.ic_baseline_favorite_border_24)
+        }
     }
 
     private fun share() {

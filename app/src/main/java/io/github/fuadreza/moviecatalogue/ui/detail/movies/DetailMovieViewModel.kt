@@ -18,8 +18,7 @@ class DetailMovieViewModel(private val movieCatalogueRepository: MovieCatalogueR
     fun setFavoriteMovie() {
         val resource = detailMovie.value
         if (resource?.data != null) {
-            val newState = !resource.data.isFav
-            movieCatalogueRepository.setFavoriteMovie(resource.data, newState)
+            movieCatalogueRepository.setFavoriteMovie(resource.data, !resource.data.isFav)
         }
     }
 
