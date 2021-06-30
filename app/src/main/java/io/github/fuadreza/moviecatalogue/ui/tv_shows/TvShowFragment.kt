@@ -81,7 +81,7 @@ class TvShowFragment : Fragment(), TvShowAdapter.OnItemClickCallback {
         context?.startActivity(intent)
     }
 
-    private fun showProgress(state: Boolean){
+    private fun showProgress(state: Boolean) {
         binding.progressBar.isVisible = state
         binding.rvTvShow.isVisible = !state
     }

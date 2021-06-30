@@ -7,11 +7,6 @@ import io.github.fuadreza.moviecatalogue.data.source.local.entity.TvShowEntity
 import io.github.fuadreza.moviecatalogue.data.vo.Resource
 
 interface MovieCatalogueDataSource {
-//    fun getMovies(): LiveData<ArrayList<MovieEntity>>
-//    fun getDetailMovie(movieId: Int): LiveData<DetailEntity>
-//    fun getTvShows(): LiveData<ArrayList<TvShowEntity>>
-//    fun getDetailTvShow(tvShowId: Int): LiveData<DetailEntity>
-
     fun getMovies(): LiveData<Resource<PagedList<MovieEntity>>>
 
     fun getDetailMovie(movieId: Int): LiveData<Resource<MovieEntity>>

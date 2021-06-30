@@ -25,10 +25,10 @@
                 android:id="@+id/ivPoster"
                 android:layout_width="100dp"
                 android:layout_height="100dp"
+                android:contentDescription="@string/content_image"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                tools:src="@color/purple_700"
-                android:contentDescription="@string/content_image" />
+                tools:src="@color/purple_700" />
 
             <TextView
                 android:id="@+id/tvTitle"

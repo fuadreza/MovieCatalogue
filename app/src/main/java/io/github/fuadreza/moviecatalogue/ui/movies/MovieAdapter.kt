@@ -51,11 +51,6 @@ class MovieAdapter : PagedListAdapter<MovieEntity, MovieAdapter.ViewHolder>(DIFF
                 Glide.with(itemView)
                     .load(BuildConfig.IMAGE_URL + mMovie.posterPath)
                     .into(ivPoster)
-//                itemView.setOnClickListener {
-//                    val intent = Intent(itemView.context, DetailMovieActivity::class.java)
-//                    intent.putExtra(DetailMovieActivity.EXTRA_MOVIE, mMovie.id)
-//                    itemView.context.startActivity(intent)
-//                }
 
                 itemView.setOnClickListener { onItemClickCallback.onItemClicked(mMovie.id) }
             }

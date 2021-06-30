@@ -51,11 +51,6 @@ class TvShowAdapter : PagedListAdapter<TvShowEntity, TvShowAdapter.ViewHolder>(D
                 Glide.with(itemView)
                     .load(BuildConfig.IMAGE_URL + mTvShow.posterPath)
                     .into(ivPoster)
-//                itemView.setOnClickListener {
-//                    val intent = Intent(itemView.context, DetailTvShowActivity::class.java)
-//                    intent.putExtra(DetailTvShowActivity.EXTRA_TV_SHOW, mTvShow.id)
-//                    itemView.context.startActivity(intent)
-//                }
 
                 itemView.setOnClickListener { onItemClickCallback.onItemClicked(mTvShow.id) }
             }

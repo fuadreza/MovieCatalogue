@@ -24,5 +24,4 @@ class DetailTvShowViewModel(private val movieCatalogueRepository: MovieCatalogue
 
     fun getDetailTvShow() = detailTvShow
 
-
 }

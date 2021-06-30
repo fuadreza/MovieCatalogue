@@ -81,7 +81,7 @@ class MovieFragment : Fragment(), MovieAdapter.OnItemClickCallback {
         context?.startActivity(intent)
     }
 
-    private fun showProgress(state: Boolean){
+    private fun showProgress(state: Boolean) {
         binding.progressBar.isVisible = state
         binding.rvMovie.isVisible = !state
     }

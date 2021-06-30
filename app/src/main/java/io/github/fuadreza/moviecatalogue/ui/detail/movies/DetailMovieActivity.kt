@@ -49,7 +49,7 @@ class DetailMovieActivity : AppCompatActivity() {
         binding.toolbar.setOnMenuItemClickListener { menuItem ->
             when (menuItem.itemId) {
                 R.id.favorite -> {
-                    favorite()
+                    viewModel.setFavoriteMovie()
                     true
                 }
                 R.id.action_share -> {
@@ -90,10 +90,6 @@ class DetailMovieActivity : AppCompatActivity() {
                 }
             }
         }
-    }
-
-    private fun favorite() {
-        viewModel.setFavoriteMovie()
     }
 
     private fun setFav(isFav: Boolean) {
