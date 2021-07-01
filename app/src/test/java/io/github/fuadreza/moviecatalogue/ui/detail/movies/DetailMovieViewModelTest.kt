@@ -5,19 +5,17 @@ import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Observer
 import com.nhaarman.mockitokotlin2.verify
-
-import io.github.fuadreza.moviecatalogue.data.source.local.entity.DetailEntity
 import io.github.fuadreza.moviecatalogue.data.source.MovieCatalogueRepository
+import io.github.fuadreza.moviecatalogue.data.source.local.entity.MovieEntity
+import io.github.fuadreza.moviecatalogue.data.vo.Resource
 import io.github.fuadreza.moviecatalogue.utils.DataDummy
-
-import org.junit.Assert.assertEquals
-import org.junit.Assert.assertNotNull
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.mockito.Mock
 import org.mockito.Mockito.`when`
+import org.mockito.Mockito.verifyNoMoreInteractions
 import org.mockito.junit.MockitoJUnitRunner
 
 @RunWith(MockitoJUnitRunner::class)
@@ -34,29 +32,37 @@ class DetailMovieViewModelTest {
     private lateinit var movieCatalogueRepository: MovieCatalogueRepository
 
     @Mock
-    private lateinit var movieObserver: Observer<DetailEntity>
+    private lateinit var movieObserver: Observer<Resource<MovieEntity>>
 
     @Before
     fun setup() {
         viewModel = DetailMovieViewModel(movieCatalogueRepository)
-        viewModel.setMovieId(movieId)
     }
 
     @Test
-    fun getMovie() {
-        val movieEntity = MutableLiveData<DetailEntity>()
-        movieEntity.value = dummyMovie
+    fun getMovieDetail() {
+        val dummyDetailMovie = Resource.success(DataDummy.getDetailMovie())
+        val movie = MutableLiveData<Resource<MovieEntity>>()
+        movie.value = dummyDetailMovie
 
-        `when`(movieCatalogueRepository.getDetailMovie(movieId)).thenReturn(movieEntity)
-        val detailEntity = viewModel.getDetailMovie().value as DetailEntity
-        verify(movieCatalogueRepository).getDetailMovie(movieId)
+        `when`(movieCatalogueRepository.getDetailMovie(movieId)).thenReturn(movie)
 
-        assertNotNull(detailEntity)
-        assertEquals(dummyMovie.id, detailEntity.id)
-        assertEquals(dummyMovie.title, detailEntity.title)
-        assertEquals(dummyMovie.tagline, detailEntity.tagline)
-
+        viewModel.setMovieId(movieId)
         viewModel.getDetailMovie().observeForever(movieObserver)
-        verify(movieObserver).onChanged(dummyMovie)
+        verify(movieObserver).onChanged(dummyDetailMovie)
+    }
+
+    @Test
+    fun setFavoriteMovie() {
+        val dummyDetailMovie = Resource.success(DataDummy.getDetailMovie())
+        val movie = MutableLiveData<Resource<MovieEntity>>()
+        movie.value = dummyDetailMovie
+
+        `when`(movieCatalogueRepository.getDetailMovie(movieId)).thenReturn(movie)
+
+        viewModel.setMovieId(movieId)
+        viewModel.setFavoriteMovie()
+        verify(movieCatalogueRepository).setFavoriteMovie(movie.value!!.data as MovieEntity, true)
+        verifyNoMoreInteractions(movieObserver)
     }
 }

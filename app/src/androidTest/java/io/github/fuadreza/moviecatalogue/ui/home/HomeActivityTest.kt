@@ -5,6 +5,7 @@ import androidx.test.core.app.ActivityScenario
 import androidx.test.espresso.Espresso.onView
 import androidx.test.espresso.IdlingRegistry
 import androidx.test.espresso.action.ViewActions.click
+import androidx.test.espresso.action.ViewActions.pressBack
 import androidx.test.espresso.assertion.ViewAssertions.matches
 import androidx.test.espresso.contrib.RecyclerViewActions
 import androidx.test.espresso.matcher.ViewMatchers.*
@@ -38,6 +39,7 @@ class HomeActivityTest {
                 dummyMovie.size
             )
         )
+        onView(withId(R.id.favorite)).check(matches(isDisplayed()))
     }
 
     @Test
@@ -53,7 +55,8 @@ class HomeActivityTest {
         onView(withId(R.id.tvTagline)).check(matches(isDisplayed()))
         onView(withId(R.id.tvOverview)).check(matches(isDisplayed()))
         onView(withId(R.id.tvScore)).check(matches(isDisplayed()))
-        onView(withId(R.id.tvGenre)).check(matches(isDisplayed()))
+        onView(withId(R.id.favorite)).check(matches(isDisplayed()))
+        onView(withId(R.id.favorite)).perform(click())
     }
 
     @Test
@@ -65,6 +68,7 @@ class HomeActivityTest {
                 dummyTvShow.size
             )
         )
+        onView(withId(R.id.favorite)).check(matches(isDisplayed()))
     }
 
     @Test
@@ -81,7 +85,30 @@ class HomeActivityTest {
         onView(withId(R.id.tvTagline)).check(matches(isDisplayed()))
         onView(withId(R.id.tvOverview)).check(matches(isDisplayed()))
         onView(withId(R.id.tvScore)).check(matches(isDisplayed()))
-        onView(withId(R.id.tvGenre)).check(matches(isDisplayed()))
+        onView(withId(R.id.favorite)).check(matches(isDisplayed()))
+        onView(withId(R.id.favorite)).perform(click())
+    }
+
+    @Test
+    fun loadFavoriteActivity() {
+        onView(withId(R.id.favorite)).check(matches(isDisplayed()))
+        onView(withId(R.id.favorite)).perform(click())
+        onView(withId(R.id.rv_movie)).check(matches(isDisplayed()))
+        onView(withId(R.id.rv_movie)).perform(
+            RecyclerViewActions.scrollToPosition<RecyclerView.ViewHolder>(
+                dummyMovie.size
+            )
+        )
+
+        onView(withText("TV Show")).perform(click())
+        onView(withId(R.id.rv_tv_show)).check(matches(isDisplayed()))
+        onView(withId(R.id.rv_tv_show)).perform(
+            RecyclerViewActions.scrollToPosition<RecyclerView.ViewHolder>(
+                dummyTvShow.size
+            )
+        )
+
+        onView(isRoot()).perform(pressBack())
     }
 
 }
